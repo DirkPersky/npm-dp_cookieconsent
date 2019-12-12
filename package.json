@@ -1,0 +1,48 @@
+{
+  "name": "dp_cookieconsent",
+  "version": "1.0.0",
+  "description": "This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin Cookie Consent. Extended with an Script and iFrame helper, so it works with the ePrivacy law.",
+  "style": "dist/css/dp_cookieconsent.css",
+  "sass": "src/scss/style.scss",
+  "js": "src/js/cookie.js",
+  "main": "dist/js/dp_cookieconsent.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DirkPersky/npm-dp_cookieconsent.git"
+  },
+  "keywords": [
+    "cookieconsent",
+    "DSGVO",
+    "cookie",
+    "consent",
+    "ePrivacy",
+    "C-673/17"
+  ],
+  "author": "Dirk Persky",
+  "homepage": "http://cookie.dp-dvelop.de/",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DirkPersky/npm-dp_cookieconsent/issues"
+  },
+  "scripts": {
+    "build": "webpack --hide-modules --mode production --config webpack.config.js",
+    "build-watch": "webpack --watch --hide-modules --mode production --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "babel-loader": "latest",
+    "extract-text-webpack-plugin": "next",
+    "file-loader": "latest",
+    "friendly-errors-webpack-plugin": "latest",
+    "html-loader": "latest",
+    "jshint": "latest",
+    "json-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "clean-css": "latest",
+    "css-loader": "latest",
+    "node-sass": "latest",
+    "sass-loader": "latest"
+  }
+}
