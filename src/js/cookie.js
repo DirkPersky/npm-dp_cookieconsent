@@ -19,6 +19,20 @@ import iframeoverlay from './html/overlay.html';
   * Licensed under GPL v3+ (https://github.com/DirkPersky/typo3-dp_cookieconsent/blob/master/LICENSE)
   */
 window.addEventListener("load", function () {
+    // handle Language Versions
+    if(typeof dpCookieConsentLang != 'function') {
+        require('./l10n/en');
+    }
+    dpCookieConsentLang.prototype.replace = function () {
+        for(var key in this.lang){
+            if(typeof window.cookieconsent_options.content[key] == 'undefined'){
+                window.cookieconsent_options.content[key] = this.lang[key];
+            }
+        }
+    };
+    // init Language Versions
+    (new dpCookieConsentLang()).replace();
+    // Init Consent Helper
     function CookieConsent() {
         this.cookie_name = 'dp_cookieconsent_status';
         this.cookie = {
@@ -36,6 +50,13 @@ window.addEventListener("load", function () {
         this.checkboxes = {
             'statistics': true,
             'marketing': false
+        };
+        // default Values
+        this.settings = {
+            layout: 'dpextend',
+            type: 'opt-in',
+            theme: 'edgeless',
+            position: 'bottom-right',
         };
     }
     /** Async Load Ressources **/
@@ -240,8 +261,8 @@ window.addEventListener("load", function () {
         if (window.cookieconsent_options.layout != 'dpextend') return;
         var me = this;
         // load checkboxes
-        var checkboxes = me.checkboxes.map(function (value, checkbox) {
-            return me.loadCheckbox('dp--cookie-' + checkbox);
+        var checkboxes = me.checkboxes.map(function (checkbox) {
+            return me.loadCheckbox('dp--cookie-' + checkbox.name);
         });
         // save Cookie Values
         this.saveCookie(checkboxes);
@@ -253,8 +274,8 @@ window.addEventListener("load", function () {
         // load cookies
         me.loadCookiesPreset();
         // load Checkboxes and set default values
-        me.checkboxes.map(function (value, checkbox) {
-            me.loadCheckbox('dp--cookie-' + checkbox, true);
+        me.checkboxes.map(function (checkbox) {
+            me.loadCheckbox('dp--cookie-' + checkbox.name, true);
         });
     };
     /** Save checkbox values to Cookie **/
@@ -324,9 +345,19 @@ window.addEventListener("load", function () {
             window.cookieconsent_options.revokeBtn = revokebutton;
         }
     };
+    /** default Setting **/
+    CookieConsent.prototype.defaults = function () {
+        for(var key in this.settings){
+            if(typeof window.cookieconsent_options[key] == 'undefined'){
+                window.cookieconsent_options[key] = this.settings[key];
+            }
+        }
+    };
     /** Init Cookie Plugin **/
     CookieConsent.prototype.init = function () {
         var me = this;
+        // set Defaults
+        me.defaults();
         // Load Cookie Consent
         require('./vendor/cookieconsent');
         // load Cookie Desc
@@ -388,7 +419,7 @@ window.addEventListener("load", function () {
                     // loop checkboxes
                     checkboxes.map(function (checkbox) {
                         // set checkboxes to true
-                        window.DPCookieConsent.loadCheckbox('dp--cookie-' + checkbox, false, true);
+                        window.DPCookieConsent.loadCheckbox('dp--cookie-' + checkbox.name, false, true);
                     })
                 }
                 // save checkboxes?
@@ -433,9 +464,9 @@ window.addEventListener("load", function () {
             setTimeout(function () {
                 if (window.cookieconsent_options.layout === 'dpextend') {
                     var type = element.getAttribute('data-cookieconsent');
-                    if (me.checkboxes.indexOf(type) != -1) {
-                        me.loadCheckbox('dp--cookie-' + type, false, true);
-                    }
+                    me.checkboxes.map(function (checkbox) {
+                        if(checkbox.name = type) me.loadCheckbox('dp--cookie-' + type, false, true);
+                    });
                 }
                 // accept consent and Close overlay
                 me.popup.setStatus(window.cookieconsent.status.allow);
@@ -452,9 +483,9 @@ window.addEventListener("load", function () {
             setTimeout(function () {
                 if (window.cookieconsent_options.layout === 'dpextend') {
                     var type = element.getAttribute('data-cookieconsent');
-                    if (me.checkboxes.indexOf(type) != -1) {
-                        me.loadCheckbox('dp--cookie-' + type, false, false);
-                    }
+                    me.checkboxes.map(function (checkbox) {
+                        if(checkbox.name = type) me.loadCheckbox('dp--cookie-' + type, false, false);
+                    });
                 }
                 // deny consent and Close overlay
                 me.popup.setStatus(window.cookieconsent.status.deny);
@@ -509,11 +540,12 @@ window.addEventListener("load", function () {
                     style += 'color:' + window.cookieconsent_options.overlay.btn.text + ';';
                 }
                 // create HTML
-                div.innerHTML = "<div class=\"dp--overlay-inner\">" +
-                    "<div class='dp--overlay-header'>" + notice + "</div>" +
-                    "<div class='dp--overlay-description'>" + desc + "</div>" +
-                    "<div class='dp--overlay-button'><button class='db--overlay-submit' onclick='window.DPCookieConsent.forceAccept(this)' data-cookieconsent='" + type + "' style='" + style + "'>" + btn + "</button></div>" +
-                    "</div>";
+                div.innerHTML = iframeoverlay
+                    .replace('{{notice}}', notice)
+                    .replace('{{desc}}', desc)
+                    .replace('{{type}}', type)
+                    .replace('{{style}}', style)
+                    .replace('{{btn}}', btn);
                 // add background color
                 if (window.cookieconsent_options.overlay.box.background) {
                     div.style.background = window.cookieconsent_options.overlay.box.background;
