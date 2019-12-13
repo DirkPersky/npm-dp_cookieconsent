@@ -46,18 +46,17 @@ the screenshots are basesd one the `window.cookieconsent_options.layout = dpexte
 **load script sources**
 If you want to load JavaScript resources after the Cookie is accepted you can use this snipped
 ```html
-<script data-ignore="1" data-cookieconsent="statistics" type="text/plain" data-src="{YOUR_LINK_TO_JS}"></script>
+<script data-cookieconsent="statistics" type="text/plain" data-src="{YOUR_LINK_TO_JS}"></script>
 ```
 
 **load inline script**
 If you want to load Inline JavaScript after the Cookie is accepted use this snipped.
 ```html
-<script data-ignore="1" data-cookieconsent="statistics" type="text/plain">
+<script data-cookieconsent="statistics" type="text/plain">
 {YOUT_DYN_JS_CODE}
 </script>
 ```
 
-The `data-ignore="1"` attribute ist to cover the [Scriptmerger](https://extensions.typo3.org/extension/scriptmerger/) engine to not Combine this parts.
 
 ### Checkboxe mode
 You can extend the default cookie message with checkboxes, by activiating the layout in the TYPO3 constants  `window.cookieconsent_options.layout = dpextend`.
@@ -145,7 +144,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
 
 ### Custom Design
 ```html
-<script type="text/plain" data-ignore="1" data-dp-cookiedesc="layout">
+<script type="text/plain" data-dp-cookiedesc="layout">
     {{message}}
     <a aria-label="learn more about cookies"
        role=button tabindex="0"
@@ -159,7 +158,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
 </script>
 ```
 ```html
-<script type="text/plain" data-ignore="1" data-dp-cookieselect="layout">
+<script type="text/plain" data-dp-cookieselect="layout">
     <div class="dp--cookie-check" xmlns:f="http://www.w3.org/1999/html">
         <label for="dp--cookie-require">
             <input type="checkbox" id="dp--cookie-require" class="dp--check-box" checked="checked" disabled="disabled" />
@@ -177,7 +176,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
 </script>
 ```
 ```html
-<script type="text/plain" data-ignore="1" data-dp-cookierevoke="layout">
+<script type="text/plain" data-dp-cookierevoke="layout">
     <div class="cc-revoke dp--revoke {{classes}}">
         <i class="dp--icon-fingerprint"></i>
         <span class="dp--sr-only">{{policy}}</span>
@@ -191,7 +190,7 @@ With this feature you can add or modify the checkbox types by configuration.
 All you have to do is setting your new checkbox in TS and add it to the partial template:
 
 ```html
-<script type="text/plain" data-ignore="1" data-dp-cookieselect="layout">
+<script type="text/plain" data-dp-cookieselect="layout">
     ...
         <label for="dp--cookie-statistics">
             <input type="checkbox" id="dp--cookie-thirdparty" class="dp--check-box" {{checked.thirdparty}} value="" />
