@@ -7,7 +7,7 @@ I extended it with Script and iFrame helper, so it works with the ePrivacy law.
 Though don't care about the latest EU laws and handle you Cookies with this Plugins.
 
 ## Config
-**window.cookieconsent_options.** *([example config](Documentation/constant.md))*
+**window.cookieconsent_options.**
 
 | Property                  | Description                                   | Options                                   | Default |
 | ------------------------- | --------------------------------------------- | ----------------------------------------- | -------:|
@@ -45,13 +45,13 @@ the screenshots are basesd one the `window.cookieconsent_options.layout = dpexte
 ### load scripts after accepting
 **load script sources**
 If you want to load JavaScript resources after the Cookie is accepted you can use this snipped
-```
+```html
 <script data-ignore="1" data-cookieconsent="statistics" type="text/plain" data-src="{YOUR_LINK_TO_JS}"></script>
 ```
 
 **load inline script**
 If you want to load Inline JavaScript after the Cookie is accepted use this snipped.
-```
+```html
 <script data-ignore="1" data-cookieconsent="statistics" type="text/plain">
 {YOUT_DYN_JS_CODE}
 </script>
@@ -73,7 +73,7 @@ This 3 types are possible and handled by the consent:
 
 ### load iframe after accepting
 If you want to load iFrame's (YouTube, GMap, ..) after the Cookie is accepted you can use this snipped
-```
+```html
 <iframe width="560" height="315" 
     data-cookieconsent="statistics" 
     data-src="https://www.youtube-nocookie.com/embed/XXXXXX?autoplay=1" 
@@ -85,12 +85,12 @@ With the `class="dp--iframe"` the iFrame is hidden in default and would be shown
 
 #### iframe overlay
 **if you want to add an overlay to accept Cookies outside from the cookie hint**
-![iframe overlay](Documentation/iframe-overlay.png)
+![iframe overlay](example/iframe-overlay.png)
 you can enable this feature in the TYPO3-constants<br/>
 `window.cookieconsent_options.overlay.notice = true`
 
 you also can modify the text in this hint individuel per iframe
-```
+```html
 <iframe
     data-cookieconsent="statistics" 
     data-src="https://www.youtube-nocookie.com/embed/XXXXXX?autoplay=1" 
@@ -105,7 +105,7 @@ you also can modify the text in this hint individuel per iframe
 
 #### build your own overlay
 or accept/deny cookies outside of the cookie hin, you can use the followed example
-```
+```html
 <button 
     onclick="window.DPCookieConsent.forceAccept(this)" 
     data-cookieconsent="statistics" 
@@ -144,7 +144,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
 ```
 
 ### Custom Design
-```
+```html
 <script type="text/plain" data-ignore="1" data-dp-cookiedesc="layout">
     {{message}}
     <a aria-label="learn more about cookies"
@@ -158,7 +158,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
     </a>
 </script>
 ```
-```
+```html
 <script type="text/plain" data-ignore="1" data-dp-cookieselect="layout">
     <div class="dp--cookie-check" xmlns:f="http://www.w3.org/1999/html">
         <label for="dp--cookie-require">
@@ -176,7 +176,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
     </div>
 </script>
 ```
-```
+```html
 <script type="text/plain" data-ignore="1" data-dp-cookierevoke="layout">
     <div class="cc-revoke dp--revoke {{classes}}">
         <i class="dp--icon-fingerprint"></i>
@@ -190,7 +190,7 @@ document.addEventListener('dp--cookie-revoke', function (e) {
 With this feature you can add or modify the checkbox types by configuration.
 All you have to do is setting your new checkbox in TS and add it to the partial template:
 
-```
+```html
 <script type="text/plain" data-ignore="1" data-dp-cookieselect="layout">
     ...
         <label for="dp--cookie-statistics">
