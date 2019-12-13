@@ -41,6 +41,7 @@
     "html-loader": "latest",
     "jshint": "latest",
     "json-loader": "latest",
+    "lodash.merge": "^4.6.2",
     "node-sass": "latest",
     "sass-loader": "latest",
     "webpack": "latest",

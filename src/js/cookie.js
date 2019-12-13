@@ -12,7 +12,8 @@ import dpextend from './html/layouts/dpextend.html';
 // Other Templates
 import revokebutton from './html/revoke.html';
 import iframeoverlay from './html/overlay.html';
-
+// erxternals
+import merger from 'lodash.merge';
 /*!
   * Cookie Consent Adapter
   * Copyright 2019 Dirk Persky (https://github.com/DirkPersky/typo3-dp_cookieconsent)
@@ -24,11 +25,7 @@ window.addEventListener("load", function () {
         require('./l10n/en');
     }
     dpCookieConsentLang.prototype.replace = function () {
-        for(var key in this.lang){
-            if(typeof window.cookieconsent_options.content[key] == 'undefined'){
-                window.cookieconsent_options.content[key] = this.lang[key];
-            }
-        }
+        window.cookieconsent_options.content = merger(this.lang, window.cookieconsent_options.content)
     };
     // init Language Versions
     (new dpCookieConsentLang()).replace();
@@ -369,11 +366,7 @@ window.addEventListener("load", function () {
     };
     /** default Setting **/
     CookieConsent.prototype.defaults = function () {
-        for(var key in this.settings){
-            if(typeof window.cookieconsent_options[key] == 'undefined'){
-                window.cookieconsent_options[key] = this.settings[key];
-            }
-        }
+        window.cookieconsent_options = merger(this.settings,  window.cookieconsent_options);
     };
     /** Init Cookie Plugin **/
     CookieConsent.prototype.init = function () {
