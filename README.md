@@ -8,6 +8,10 @@ I extended it with Script and iFrame helper, so it works with the ePrivacy law.
 
 Though don't care about the latest EU laws and handle you Cookies with this Plugins.
 
+```npm
+npm i dp_cookieconsent
+```
+
 ## Config
 **window.cookieconsent_options.**
 
