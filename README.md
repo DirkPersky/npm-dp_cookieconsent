@@ -1,7 +1,7 @@
 # DP Cookie Consent
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge)](https://www.paypal.me/dirkpersky)
-![NPM](https://img.shields.io/npm/l/dp_cookieconsent?style=for-the-badge)
-![npm](https://img.shields.io/npm/v/dp_cookieconsent?style=for-the-badge)
+[![NPM](https://img.shields.io/npm/l/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/dp_cookieconsent)
+[![npm](https://img.shields.io/npm/v/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/dp_cookieconsent)
 
 This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin [Cookie Consent](https://cookieconsent.insites.com/).
 I extended it with Script and iFrame helper, so it works with the ePrivacy law.
@@ -220,5 +220,6 @@ You like this extension? Get something for me (surprise!) from my wishlist on [A
 ### Contact us
 - [E-Mail](mailto:info@dp-dvelop.de)
 - [GitHub](https://github.com/DirkPersky/npm-dp_cookieconsent)
+- [NPM](https://www.npmjs.com/package/dp_cookieconsent)
 - [Homepage](http:/dp-dvelop.de)
 - [TYPO3 PlugIn](https://github.com/DirkPersky/typo3-dp_cookieconsent)
