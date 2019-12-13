@@ -1,8 +1,9 @@
 const path = require('path');
 const webpackConfig = require('webpack');
-let FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let packageJson = require('./package');
+const CopyPlugin = require('copy-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const packageJson = require('./package');
 
 class dpWebpack {
 
@@ -15,7 +16,7 @@ class dpWebpack {
      */
     constructor() {
         this.config = {
-            publicPath: './dist',
+            publicPath: './dest',
         };
 
         this.webpackConfig = {
@@ -157,6 +158,12 @@ class dpWebpack {
                 filename: '../css/'+this.getName()+'.css',
                 allChunks: true,
             })
+        );
+        // copy files
+        this.webpackConfig.plugins.push(
+            new CopyPlugin([
+                { from: './src/js/l10n', to: './l10n' },
+            ]),
         );
 
         return this;

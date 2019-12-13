@@ -26,23 +26,24 @@
   },
   "scripts": {
     "build": "webpack --hide-modules --mode production --config webpack.config.js",
-    "build-watch": "webpack --watch --hide-modules --mode production --config webpack.config.js"
+    "watch": "webpack --watch --hide-modules --mode production --config webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
     "babel-loader": "latest",
+    "clean-css": "latest",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "latest",
     "extract-text-webpack-plugin": "next",
     "file-loader": "latest",
     "friendly-errors-webpack-plugin": "latest",
     "html-loader": "latest",
     "jshint": "latest",
     "json-loader": "latest",
-    "webpack": "latest",
-    "webpack-cli": "latest",
-    "clean-css": "latest",
-    "css-loader": "latest",
     "node-sass": "latest",
-    "sass-loader": "latest"
+    "sass-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
   }
 }
