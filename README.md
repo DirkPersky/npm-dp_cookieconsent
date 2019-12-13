@@ -220,7 +220,3 @@ You like this extension? Get something for me (surprise!) from my wishlist on [A
 - [GitHub](https://github.com/DirkPersky/npm-dp_cookieconsent)
 - [Homepage](http:/dp-dvelop.de)
 - [TYPO3 PlugIn](https://github.com/DirkPersky/typo3-dp_cookieconsent)
-
-
-
-https://www.heise.de/developer/artikel/Teilen-leichtgemacht-Eigene-Module-fuer-Node-js-veroeffentlichen-1857710.html
