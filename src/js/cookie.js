@@ -44,12 +44,21 @@ window.addEventListener("load", function () {
             secure: false
         };
         // checkboxes
-        this.checkboxes = {
-            'statistics': true,
-            'marketing': false
-        };
+        this.checkboxes = [
+            {
+                name: 'statistics',
+                checked: true
+            },
+            {
+                name: 'marketing',
+                checked: false
+            }
+        ];
         // default Values
         this.settings = {
+            autoOpen: true,
+            revokable: true,
+            dismissOnScroll: false,
             layout: 'dpextend',
             type: 'opt-in',
             theme: 'edgeless',
@@ -239,14 +248,15 @@ window.addEventListener("load", function () {
     };
     /** Load initial checkbox types from configuration **/
     CookieConsent.prototype.initCheckboxes = function () {
-        if (typeof window.cookieconsent_options.checkboxes !== "object") return;
         var me = this;
-        me.checkboxes = [];
-        for (var key in window.cookieconsent_options.checkboxes) {
-            me.checkboxes.push({
-                'name': key,
-                'checked': window.cookieconsent_options.checkboxes[key]
-            });
+        if (typeof window.cookieconsent_options.checkboxes === "object") {
+            me.checkboxes = [];
+            for (var key in window.cookieconsent_options.checkboxes) {
+                me.checkboxes.push({
+                    'name': key,
+                    'checked': window.cookieconsent_options.checkboxes[key]
+                });
+            }
         }
         // render default layout
         var layout = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieSelect');
@@ -258,7 +268,7 @@ window.addEventListener("load", function () {
         // set Default values
         me.checkboxes.map(function (checkbox) {
             let checked = '';
-            if(checkbox.checked === true || checkbox.checked.toLowerCase() === 'true') {
+            if(checkbox.checked === true || checkbox.checked !== false && checkbox.checked.toLowerCase() === 'true') {
                 checked = 'checked="checked"';
             }
             layout = layout.replace('{{checked.'+checkbox.name+'}}', checked);

@@ -5,19 +5,11 @@
 
         <script type="text/javascript">
             window.cookieconsent_options = {
-                overlay: {
-                    btn: {
-                        background: 'red',
-                    }
-                },
+
                 content: {
                     href:'/datenschutz',
                     target:'_blank',
                 },
-                autoOpen: true || false,
-                revokable: true,
-                checkboxes: {"statistics":"true","marketing":"false"},
-                dismissOnScroll: false,
                 palette: {
                     button: {
                         background: 'red',
@@ -27,6 +19,14 @@
         </script>
         <script src="../src/js/l10n/de.js" type="application/javascript"></script>
         <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
+
+        <script data-cookieconsent="statistics" type="text/plain">
+            alert('Accep statistics');
+        </script>
+
+        <script data-cookieconsent="marketing" type="text/plain">
+            alert('Accep marketing');
+        </script>
     </head>
     <body>
         <div>
