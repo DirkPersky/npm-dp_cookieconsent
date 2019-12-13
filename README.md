@@ -34,7 +34,7 @@ Though don't care about the latest EU laws and handle you Cookies with this Plug
 
 
 ### types
-the screenshots are basesd one the `plugin.tx_cookieconsent.settings.layout = dpextend`
+the screenshots are basesd one the `window.cookieconsent_options.layout = dpextend`
 
 | info                                 | opt-out                                 | opt-in                                 |
 | ------------------------------------ | --------------------------------------- | -------------------------------------- |
@@ -60,7 +60,7 @@ If you want to load Inline JavaScript after the Cookie is accepted use this snip
 The `data-ignore="1"` attribute ist to cover the [Scriptmerger](https://extensions.typo3.org/extension/scriptmerger/) engine to not Combine this parts.
 
 ### Checkboxe mode
-You can extend the default cookie message with checkboxes, by activiating the layout in the TYPO3 constants  `plugin.tx_cookieconsent.settings.layout = dpextend`.
+You can extend the default cookie message with checkboxes, by activiating the layout in the TYPO3 constants  `window.cookieconsent_options.layout = dpextend`.
 Now your customer can choose what types of scripts/cookies he want to allow.
 
 This 3 types are possible and handled by the consent:
@@ -87,7 +87,7 @@ With the `class="dp--iframe"` the iFrame is hidden in default and would be shown
 **if you want to add an overlay to accept Cookies outside from the cookie hint**
 ![iframe overlay](Documentation/iframe-overlay.png)
 you can enable this feature in the TYPO3-constants<br/>
-`plugin.tx_cookieconsent.settings.overlay.notice = true`
+`window.cookieconsent_options.overlay.notice = true`
 
 you also can modify the text in this hint individuel per iframe
 ```
