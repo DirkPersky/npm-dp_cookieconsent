@@ -1,5 +1,5 @@
 {
-  "name": "dp_cookieconsent",
+  "name": "@dirkpersky/dp_cookieconsent",
   "version": "1.0.0",
   "description": "This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin Cookie Consent. Extended with an Script and iFrame helper, so it works with the ePrivacy law.",
   "style": "dist/css/dp_cookieconsent.css",
