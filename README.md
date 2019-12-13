@@ -1,5 +1,7 @@
 # DP Cookie Consent
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/dirkpersky)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge)](https://www.paypal.me/dirkpersky)
+![NPM](https://img.shields.io/npm/l/dp_cookieconsent?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/dp_cookieconsent?style=for-the-badge)
 
 This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin [Cookie Consent](https://cookieconsent.insites.com/).
 I extended it with Script and iFrame helper, so it works with the ePrivacy law.
