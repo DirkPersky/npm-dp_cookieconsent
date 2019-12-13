@@ -1,6 +1,6 @@
 # DP Cookie Consent
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge)](https://www.paypal.me/dirkpersky)
-[![NPM](https://img.shields.io/npm/l/dp_cookieconsent?style=for-the-badge#1)](https://www.npmjs.com/package/dp_cookieconsent)
+[![NPM](https://img.shields.io/npm/l/dp_cookieconsent?style=for-the-badge&v=1)](https://www.npmjs.com/package/dp_cookieconsent)
 [![npm](https://img.shields.io/npm/v/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/dp_cookieconsent)
 
 This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin [Cookie Consent](https://cookieconsent.insites.com/).
