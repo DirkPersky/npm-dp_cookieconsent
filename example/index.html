@@ -6,46 +6,48 @@
         <script type="text/javascript">
             window.cookieconsent_options = {
                 overlay: {
-                    notice: true,
-                    box: {
-                        background: 'rgba(0,0,0,.8)',
-                        text: '#fff'
-                    },
                     btn: {
-                        background: '#F96332',
-                        text: '#fff'
+                        background: 'red',
                     }
                 },
                 content: {
                     href:'/datenschutz',
                     target:'_blank',
-                    'allow-all': 'alle TEST!'
                 },
                 autoOpen: true || false,
                 revokable: true,
                 checkboxes: {"statistics":"true","marketing":"false"},
                 dismissOnScroll: false,
                 palette: {
-                    popup: {
-                        background: 'rgba(0,0,0,.8)',
-                        text: '#FFFFFF'
-                    },
                     button: {
-                        background: '#F96332',
-                        text: '#FFFFFF',
+                        background: 'red',
                     }
                 }
             };
         </script>
-        <script src="../src/js/l10n/da.js" type="application/javascript"></script>
+        <script src="../src/js/l10n/de.js" type="application/javascript"></script>
         <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
     </head>
     <body>
-    DP COOKIE CONSENT
+        <div>
+            DP COOKIE CONSENT
+        </div>
+        <div>
+            <button
+                    onclick="window.DPCookieConsent.forceAccept(this)"
+                    data-cookieconsent="statistics"
+            >allow cookies and play video</button>
+        </div>
 
-    <button
-            onclick="window.DPCookieConsent.forceAccept(this)"
-            data-cookieconsent="statistics"
-    >allow cookies and play video</button>
+        <iframe
+                data-cookieconsent="statistics"
+                data-src="https://www.youtube-nocookie.com/embed/7wtfhZwyrcc?autoplay=1"
+                class="dp--iframe"
+
+                data-cookieconsent-notice="Cookie Notice"
+                data-cookieconsent-description="Loading this...."
+                data-cookieconsent-btn="allow cookies and load this ...."
+        >
+        </iframe>
     </body>
 </html>

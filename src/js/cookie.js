@@ -57,6 +57,28 @@ window.addEventListener("load", function () {
             type: 'opt-in',
             theme: 'edgeless',
             position: 'bottom-right',
+            overlay: {
+                notice: true,
+                box: {
+                    background: 'rgba(0,0,0,.8)',
+                    text: '#fff'
+                },
+                btn: {
+                    background: '#F96332',
+                    text: '#fff'
+                }
+            },
+            palette: {
+                popup: {
+                    background: 'rgba(0,0,0,.8)',
+                    text: '#FFFFFF'
+                },
+                button: {
+                    background: '#F96332',
+                    text: '#FFFFFF',
+                }
+            }
+
         };
     }
     /** Async Load Ressources **/
@@ -544,7 +566,7 @@ window.addEventListener("load", function () {
                     .replace('{{notice}}', notice)
                     .replace('{{desc}}', desc)
                     .replace('{{type}}', type)
-                    .replace('{{style}}', style)
+                    .replace('{{style}}', 'style="'+style+'"')
                     .replace('{{btn}}', btn);
                 // add background color
                 if (window.cookieconsent_options.overlay.box.background) {
@@ -564,5 +586,4 @@ window.addEventListener("load", function () {
     /** Start Script Handling **/
     window.DPCookieConsent.init();
 });
-
 
