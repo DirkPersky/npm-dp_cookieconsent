@@ -8,7 +8,7 @@ const packageJson = require('./package');
 class dpWebpack {
 
     getName(){
-        let name = packageJson.name;
+        let name = 'dp_cookieconsent';
         return name.replace('/','-');
     }
     /**
@@ -162,7 +162,7 @@ class dpWebpack {
         // copy files
         this.webpackConfig.plugins.push(
             new CopyPlugin([
-                { from: './src/js/l10n', to: './l10n' },
+                { from: './src/js/l10n', to: './l10n', ignore: ['en.js'] },
             ]),
         );
 
