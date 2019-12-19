@@ -1,7 +1,7 @@
 # DP Cookie Consent
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge)](https://www.paypal.me/dirkpersky)
-[![NPM](https://img.shields.io/npm/l/@dirkpersky/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/@dirkpersky/dp_cookieconsent)
-[![npm](https://img.shields.io/npm/v/@dirkpersky/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/@dirkpersky/dp_cookieconsent)
+[![NPM](https://img.shields.io/npm/v/@dirkpersky/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/@dirkpersky/dp_cookieconsent)
+[![License](https://img.shields.io/npm/l/@dirkpersky/dp_cookieconsent?style=for-the-badge)](https://www.npmjs.com/package/@dirkpersky/dp_cookieconsent)
 
 This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin [Cookie Consent](https://cookieconsent.insites.com/).
 I extended it with Script and iFrame helper, so it works with the ePrivacy law.
