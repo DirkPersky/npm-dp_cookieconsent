@@ -69,10 +69,10 @@
     transform: none !important;
     text-decoration: none !important;
 
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     margin: 5px;
-    border-radius: 50% !important;
+    border-radius: 20px !important;
 
     line-height: 1;
     display: flex;
@@ -97,7 +97,7 @@
 
     .dp--hover {
         pointer-events: none;
-        display: block;
+        display: none;
     }
 
     &:hover {
