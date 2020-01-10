@@ -79,21 +79,34 @@
     justify-content: center;
     align-items: center;
     transition: all .3s ease-in-out;
-}
-.cc-revoke.dp--revoke i {
-    font-size: 24px;
-    pointer-events: none;
-}
-.cc-revoke.dp--revoke:hover {
-    opacity: .7;
-}
-.cc-revoke.dp--revoke.cc-top,
-.cc-revoke.dp--revoke.cc-bottom {
-    left: 0;
-}
-.cc-revoke.dp--revoke.cc-right {
-    right: 0;
-    left: unset;
+
+    i {
+        font-size: 24px;
+        pointer-events: none;
+    }
+
+    &.cc-top,
+    &.cc-bottom {
+        left: 0;
+    }
+
+    &.cc-right {
+        right: 0;
+        left: unset;
+    }
+
+    .dp--hover {
+        pointer-events: none;
+        display: block;
+    }
+
+    &:hover {
+        opacity: .7;
+
+        .dp--hover {
+            display: inline-block;
+        }
+    }
 }
 
 .dp--sr-only {
