@@ -17,8 +17,8 @@ npm i @dirkpersky/dp_cookieconsent
 
 | Property                  | Description                                   | Options                                   | Default |
 | ------------------------- | --------------------------------------------- | ----------------------------------------- | -------:|
-| url                       | URL to Data Protection                        |                                           | |
-| target                    | Link target of read more link                 |                                           | _blank |
+| content.href              | URL to Data Protection                        |                                           | |
+| content.target            | Link target of read more link                 |                                           | _blank |
 | theme                     | Layout of the consent                         | edgeless, block, wire, classic            | edgeless |
 | position                  | position of the consent                       | bottom, top, bottom-left, bottom-right    | bottom-right |
 | dismissOnScroll           | auto accecpt consent on scroll after XX px    |                                           | | 
@@ -26,8 +26,8 @@ npm i @dirkpersky/dp_cookieconsent
 | revokable                 | Some countries REQUIRE that a user can change their mind | true, false                    | true | 
 | type                      | consent types *([screenshot](#types))*        | info, opt-out, opt-in                     | info |
 | layout                    | consent layout                                | basic, dpextend                           | dpextend |
-| statistics                | pre check statistics in checkboxes layout     | true, false                               | false |
-| marketing                 | pre check marketing in checkboxes layout      | true, false                               | false |
+| checkboxes.statistics     | pre check statistics in checkboxes layout     | true, false                               | false |
+| checkboxes.marketing      | pre check marketing in checkboxes layout      | true, false                               | false |
 | overlay.notice            | enable or disable overlay                     | true, false                               | false |
 | overlay.box.background    | Overlay: Background color                     | rgba(), #hexa                             | rgba(0,0,0,.8) |
 | overlay.box.text          | Overlay: text color                           | rgb(), #hexa                              | #fff |

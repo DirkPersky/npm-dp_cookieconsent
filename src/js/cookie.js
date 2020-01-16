@@ -23,13 +23,13 @@ import defaultL10n from './l10n/en';
 window.addEventListener("load", function () {
     // handle Language Versions
     if(typeof dpCookieConsentLang == 'undefined') {
-        var dpCookieConsentLang = defaultL10n;
+        window.DPCookieConsentL10N = defaultL10n;
     }
-    dpCookieConsentLang.prototype.replace = function () {
+    window.DPCookieConsentL10N.prototype.replace = function () {
         window.cookieconsent_options.content = merger(this.lang, window.cookieconsent_options.content)
     };
     // init Language Versions
-    (new dpCookieConsentLang()).replace();
+    (new window.DPCookieConsentL10N()).replace();
     // Init Consent Helper
     function CookieConsent() {
         this.cookie_name = 'dp_cookieconsent_status';

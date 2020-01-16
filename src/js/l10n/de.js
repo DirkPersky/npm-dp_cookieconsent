@@ -17,3 +17,5 @@ function dpCookieConsentLang() {
         }
     };
 }
+
+window.DPCookieConsentL10N = dpCookieConsentLang;
