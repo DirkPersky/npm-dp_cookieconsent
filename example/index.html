@@ -1,53 +1,75 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="../dest/css/dp_cookieconsent.css" rel="stylesheet" />
+<head>
+    <meta charset="utf-8">
+    <link href="../dest/css/dp_cookieconsent.css" rel="stylesheet"/>
 
-        <script type="text/javascript">
-            window.cookieconsent_options = {
+    <script type="text/javascript">
+        window.cookieconsent_options = {
 
-                content: {
-                    href:'/datenschutz',
-                    target:'_blank',
-                },
-                palette: {
-                    button: {
-                        background: 'red',
-                    }
+            content: {
+                href: '/datenschutz',
+                target: '_blank',
+            },
+            palette: {
+                button: {
+                    background: 'red',
                 }
-            };
-        </script>
-        <script src="../dest/js/l10n/de.js" type="application/javascript"></script>
-        <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
+            }
+        };
+    </script>
+    <script src="../dest/js/l10n/de.js" type="application/javascript"></script>
+    <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
 
-        <script data-cookieconsent="statistics" type="text/plain">
+    <script data-cookieconsent="statistics" type="text/plain">
             alert('Accep statistics');
-        </script>
 
-        <script data-cookieconsent="marketing" type="text/plain">
+    </script>
+
+    <script data-cookieconsent="marketing" type="text/plain">
             alert('Accep marketing');
-        </script>
-    </head>
-    <body>
-        <div>
-            DP COOKIE CONSENT
-        </div>
-        <div>
-            <button
-                    onclick="window.DPCookieConsent.forceAccept(this)"
-                    data-cookieconsent="statistics"
-            >allow cookies and play video</button>
-        </div>
 
-        <iframe
-                data-cookieconsent="statistics"
-                data-src="https://www.youtube-nocookie.com/embed/7wtfhZwyrcc?autoplay=1"
-                class="dp--iframe"
+    </script>
+</head>
+<body>
+<div>
+    DP COOKIE CONSENT
+</div>
+<div>
+    <button
+            onclick="window.DPCookieConsent.forceAccept(this)"
+            data-cookieconsent="statistics"
+    >allow cookies and play video
+    </button>
+    <button
+            onclick="window.DPCookieConsent.forceAccept(this)"
+            data-cookieconsent="marketing"
+    >allow cookies and play video
+    </button>
+</div>
+<div>
+    <iframe
+            data-cookieconsent="statistics"
+            data-src="https://www.youtube-nocookie.com/embed/7wtfhZwyrcc?autoplay=1"
+            class="dp--iframe"
 
-                data-cookieconsent-notice="Cookie Notice"
-                data-cookieconsent-description="Loading this...."
-                data-cookieconsent-btn="allow cookies and load this ...."
-        >
-        </iframe>
-    </body>
+            data-cookieconsent-notice="Cookie Notice"
+            data-cookieconsent-description="Loading this...."
+            data-cookieconsent-btn="allow cookies and load this ...."
+    >
+    </iframe>
+</div>
+<div>
+    <iframe
+            data-cookieconsent="marketing"
+            data-src="https://www.youtube-nocookie.com/embed/7wtfhZwyrcc?autoplay=1"
+            class="dp--iframe"
+
+            data-cookieconsent-notice="Cookie Notice"
+            data-cookieconsent-description="Loading this...."
+            data-cookieconsent-btn="allow cookies and load this ...."
+    >
+    </iframe>
+</div>
+
+</body>
 </html>

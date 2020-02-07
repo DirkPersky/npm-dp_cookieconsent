@@ -491,7 +491,7 @@ window.addEventListener("load", function () {
                 if (window.cookieconsent_options.layout === 'dpextend') {
                     var type = element.getAttribute('data-cookieconsent');
                     me.checkboxes.map(function (checkbox) {
-                        if(checkbox.name = type) me.loadCheckbox('dp--cookie-' + type, false, true);
+                        if(checkbox.name == type) me.loadCheckbox('dp--cookie-' + checkbox.name, false, true);
                     });
                 }
                 // accept consent and Close overlay
