@@ -292,7 +292,7 @@ window.addEventListener("load", function () {
         var me = this;
         // load checkboxes
         var checkboxes = me.checkboxes.map(function (checkbox) {
-            return me.loadCheckbox('dp--cookie-' + checkbox.name);
+            return me.loadCheckbox( checkbox.name );
         });
         // save Cookie Values
         this.saveCookie(checkboxes);
@@ -305,7 +305,7 @@ window.addEventListener("load", function () {
         me.loadCookiesPreset();
         // load Checkboxes and set default values
         me.checkboxes.map(function (checkbox) {
-            me.loadCheckbox('dp--cookie-' + checkbox.name, true);
+            me.loadCheckbox(checkbox.name, true);
         });
     };
     /** Save checkbox values to Cookie **/
@@ -341,8 +341,10 @@ window.addEventListener("load", function () {
         }
     };
     /** Load Checkboxes by name and fill Cookie value**/
-    CookieConsent.prototype.loadCheckbox = function (id, cookieLoad, override) {
-        var checkbox = document.getElementById(id);
+    CookieConsent.prototype.loadCheckbox = function (fieldname, cookieLoad, override) {
+        var me = this,
+            id = 'dp--cookie-' + fieldname,
+            checkbox = document.getElementById(id);
         // load Cookie Value
         if (cookieLoad === true) {
             // get checkbox Value
@@ -352,6 +354,12 @@ window.addEventListener("load", function () {
         } else if (typeof override != "undefined") {
             checkbox.checked = override;
         }
+        // write value back to element
+        me.checkboxes.map((field, index) => {
+           if(field.name == fieldname){
+                me.checkboxes[index].checked = checkbox.checked;
+           }
+        });
         // return element
         return checkbox;
     };
@@ -445,10 +453,10 @@ window.addEventListener("load", function () {
                     // loop checkboxes
                     checkboxes.map(function (checkbox) {
                         // set checkboxes to true
-                        window.DPCookieConsent.loadCheckbox('dp--cookie-' + checkbox.name, false, true);
+                        window.DPCookieConsent.loadCheckbox(checkbox.name, false, true);
                     })
                 }
-                // save checkboxes?
+                // save checkboxes
                 window.DPCookieConsent.setCheckboxes();
                 // load cookies
                 if (this.hasConsented() && (status == 'dismiss' || status == 'allow')) {
@@ -489,9 +497,15 @@ window.addEventListener("load", function () {
         if (typeof me.popup != "undefined") {
             setTimeout(function () {
                 if (window.cookieconsent_options.layout === 'dpextend') {
+                    // load pref Status
+                    me.loadCheckboxes();
                     var type = element.getAttribute('data-cookieconsent');
-                    me.checkboxes.map(function (checkbox) {
-                        if(checkbox.name == type) me.loadCheckbox('dp--cookie-' + checkbox.name, false, true);
+                    me.checkboxes.map( (checkbox, index) => {
+                        if(checkbox.name == type) {
+                            me.loadCheckbox(checkbox.name, false, true);
+                        } else if( !me.popup.hasAnswered() ){
+                            me.loadCheckbox(checkbox.name, false, false);
+                        }
                     });
                 }
                 // accept consent and Close overlay
@@ -508,9 +522,13 @@ window.addEventListener("load", function () {
         if (typeof me.popup != "undefined") {
             setTimeout(function () {
                 if (window.cookieconsent_options.layout === 'dpextend') {
+                    // load pref Status
+                    me.loadCheckboxes();
                     var type = element.getAttribute('data-cookieconsent');
-                    me.checkboxes.map(function (checkbox) {
-                        if(checkbox.name = type) me.loadCheckbox('dp--cookie-' + type, false, false);
+                    me.checkboxes.map( (checkbox, index) => {
+                        if(checkbox.name == type) {
+                            me.loadCheckbox(checkbox.name, false, false);
+                        }
                     });
                 }
                 // deny consent and Close overlay
