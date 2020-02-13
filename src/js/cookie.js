@@ -313,7 +313,7 @@ window.addEventListener("load", function () {
         var object = {};
         // build Store object
         values.map(function (e) {
-            object[e.id] = e.checked;
+            if(e) object[e.id] = e.checked;
         });
         // save value to local
         this.dpCookies = values;
