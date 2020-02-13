@@ -313,7 +313,7 @@ window.addEventListener("load", function () {
         var object = {};
         // build Store object
         values.map(function (e) {
-            object[e.id] = e.checked;
+            if(e) object[e.id] = e.checked;
         });
         // save value to local
         this.dpCookies = values;
@@ -343,6 +343,8 @@ window.addEventListener("load", function () {
     /** Load Checkboxes by name and fill Cookie value**/
     CookieConsent.prototype.loadCheckbox = function (id, cookieLoad, override) {
         var checkbox = document.getElementById(id);
+        // if not exist abort
+        if(!checkbox) return;
         // load Cookie Value
         if (cookieLoad === true) {
             // get checkbox Value
