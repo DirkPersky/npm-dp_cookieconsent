@@ -26,6 +26,7 @@ npm i @dirkpersky/dp_cookieconsent
 | revokable                 | Some countries REQUIRE that a user can change their mind | true, false                    | true | 
 | type                      | consent types *([screenshot](#types))*        | info, opt-out, opt-in                     | info |
 | layout                    | consent layout                                | basic, dpextend                           | dpextend |
+| reloadOnRevoke            | reload page after consent revoke (stop tracking) | true, false                               | false |
 | checkboxes.statistics     | pre check statistics in checkboxes layout     | true, false                               | false |
 | checkboxes.marketing      | pre check marketing in checkboxes layout      | true, false                               | false |
 | overlay.notice            | enable or disable overlay                     | true, false                               | false |

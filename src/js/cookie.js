@@ -44,6 +44,8 @@ window.addEventListener("load", function () {
             // If true the cookie will be created with the secure flag. Secure cookies will only be transmitted via HTTPS.
             secure: false
         };
+        // revoke Reload flag
+        this.prevCheckboxes = false;
         // checkboxes
         this.checkboxes = [
             {
@@ -64,6 +66,7 @@ window.addEventListener("load", function () {
             type: 'opt-in',
             theme: 'edgeless',
             position: 'bottom-right',
+            reloadOnRevoke: false,
             overlay: {
                 notice: true,
                 box: {
@@ -238,6 +241,16 @@ window.addEventListener("load", function () {
                 }
             }
         }
+        // set CurrentState of checkboxes
+        window.DPCookieConsent.prevCheckboxes = [];
+        window.DPCookieConsent.checkboxes.map(box => {
+            if(box) {
+                window.DPCookieConsent.prevCheckboxes.push({
+                    name: box.name,
+                    checked: box.checked
+                });
+            }
+        });
     };
     /** Toogle Body Class **/
     CookieConsent.prototype.setClass = function (remove) {
@@ -462,8 +475,28 @@ window.addEventListener("load", function () {
                 window.DPCookieConsent.setCheckboxes();
                 // load cookies
                 if (this.hasConsented() && (status == 'dismiss' || status == 'allow')) {
+                    var reload = false;
+                    // force reload check
+                    if(window.DPCookieConsent.settings.reloadOnRevoke && window.DPCookieConsent.prevCheckboxes) {
+                        window.DPCookieConsent.prevCheckboxes.map((box, index) => {
+                            // has checked changed?
+                            var current = window.DPCookieConsent.checkboxes[index];
+                            if(box.checked === true) {
+                                if(!current || current.checked == false) {
+                                    // set reload flag
+                                    reload = true;
+                                }
+                            }
+                        });
+                    }
+                    // load handling
                     window.DPCookieConsent.loadCookies();
                     window.DPCookieConsent.fireEvent('dp--cookie-accept');
+                    // check reload status
+                    if(reload) {
+                        // reload page
+                        location.reload();
+                    }
                 } else {
                     window.DPCookieConsent.fireEvent('dp--cookie-deny');
                 }
