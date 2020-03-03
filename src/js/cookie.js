@@ -357,17 +357,35 @@ window.addEventListener("load", function () {
     CookieConsent.prototype.loadCheckbox = function (fieldname, cookieLoad, override) {
         var me = this,
             id = 'dp--cookie-' + fieldname,
-            checkbox = document.getElementById(id);
-        // if not exist abort
-        if(!checkbox) return;
+            checkbox = document.getElementById(id),
+            checked = false,
+            setValue = false;
         // load Cookie Value
         if (cookieLoad === true) {
             // get checkbox Value
             if (this.dpCookies && this.dpCookies.hasOwnProperty(id)) {
-                checkbox.checked = this.dpCookies[id];
+                checked = this.dpCookies[id];
+                setValue = true;
             }
         } else if (typeof override != "undefined") {
-            checkbox.checked = override;
+            checked = override;
+            setValue = true;
+        }
+
+        // if not exist abort
+        if(!checkbox) {
+            // write value back to element
+            me.checkboxes.map((field, index) => {
+                // write to storage
+                if(setValue && field.name == fieldname){
+                    me.checkboxes[index].checked = checked;
+                }
+            });
+            // abort here
+            return;
+        }
+        if(setValue) {
+            checkbox.checked = checked
         }
         // write value back to element
         me.checkboxes.map((field, index) => {
@@ -454,6 +472,9 @@ window.addEventListener("load", function () {
             },
             onInitialise: function (status) {
                 if (this.hasConsented() && (status == 'dismiss' || status == 'allow')){
+                    // load Checkboxes
+                    window.DPCookieConsent.loadCheckboxes();
+                    // set falags
                     window.DPCookieConsent.loadCookies();
                     window.DPCookieConsent.fireEvent('dp--cookie-accept-init');
                 }
