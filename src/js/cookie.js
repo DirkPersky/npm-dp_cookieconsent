@@ -50,7 +50,7 @@ window.addEventListener("load", function () {
         this.checkboxes = [
             {
                 name: 'statistics',
-                checked: true
+                checked: false
             },
             {
                 name: 'marketing',
