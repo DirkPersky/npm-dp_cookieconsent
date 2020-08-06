@@ -215,6 +215,21 @@ window.cookieconsent_options.checkboxes = {
 }
 ```
 
+## change Cookie Settings
+you can overwrite the cookie settings with a global definition  
+```javascript
+window.cookieconsent_options_cookie = {
+    // This is the url path that the cookie 'name' belongs to. The cookie can only be read at this location
+    path: '/',
+    // This is the domain that the cookie 'name' belongs to. The cookie can only be read on this domain.
+    //  - Guide to cookie domains - https://www.mxsasha.eu/blog/2014/03/04/definitive-guide-to-cookie-domains/
+    domain: '',
+    // The cookies expire date, specified in days (specify -1 for no expiry)
+    expiryDays: 30,
+    // If true the cookie will be created with the secure flag. Secure cookies will only be transmitted via HTTPS.
+    secure: false
+}
+```
 
 ## Please give me feedback
 I would appreciate any kind of feedback or ideas for further developments to keep improving the extension for your needs.

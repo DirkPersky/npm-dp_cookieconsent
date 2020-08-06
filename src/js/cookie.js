@@ -419,6 +419,10 @@ window.addEventListener("load", function () {
     /** default Setting **/
     CookieConsent.prototype.defaults = function () {
         window.cookieconsent_options = merger(this.settings,  window.cookieconsent_options);
+        if(typeof window.cookieconsent_options_cookie != 'undefined') {
+            this.cookie = merger(this.cookie,  window.cookieconsent_options_cookie);
+            console.log(this.cookie);
+        }
     };
     /** Init Cookie Plugin **/
     CookieConsent.prototype.init = function () {
