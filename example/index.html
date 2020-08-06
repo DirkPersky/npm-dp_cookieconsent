@@ -16,6 +16,22 @@
         </div>
     </script> -->
 
+    <script type="text/plain" data-dp-cookieIframe="layout">
+        <div class="dp--overlay-inner">
+            <div class="dp--overlay-header">{{notice}}</div>
+            <div class="dp--overlay-description">
+                {{desc}}
+                <a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{href}}" rel="noopener noreferrer nofollow" target="{{target}}">{{link}}</a>
+            </div>
+            <div class="dp--overlay-button">
+                <button class="db--overlay-submit" onclick="window.DPCookieConsent.forceAccept(this)"
+                        data-cookieconsent="{{type}}" {{style}}>
+                    {{btn}}
+                </button>
+            </div>
+        </div>
+    </script>
+
     <script type="text/javascript">
         window.cookieconsent_options_cookie = {
 

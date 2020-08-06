@@ -622,6 +622,15 @@ window.addEventListener("load", function () {
         if (!window.cookieconsent_options.overlay.notice) return;
         // elements iFrame
         var elements = this.getCookieElementsByTag('iframe');
+        // get overlay Template
+        let iframeoverlayHtml = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieIframe');
+        if(iframeoverlayHtml.length > 0){
+            iframeoverlayHtml = iframeoverlayHtml[0].innerHTML;
+        } else {
+            iframeoverlayHtml = iframeoverlay;
+        }
+
+
         // loop elements and create overlay
         if (elements.length > 0) {
             var key;
@@ -644,12 +653,21 @@ window.addEventListener("load", function () {
                     style += 'color:' + window.cookieconsent_options.overlay.btn.text + ';';
                 }
                 // create HTML
-                div.innerHTML = iframeoverlay
+                iframeoverlayHtml = iframeoverlayHtml
                     .replace('{{notice}}', notice)
                     .replace('{{desc}}', desc)
                     .replace('{{type}}', type)
                     .replace('{{style}}', 'style="'+style+'"')
                     .replace('{{btn}}', btn);
+
+                // prepare for link edit
+                if(typeof window.cookieconsent_options.content != 'undefined') {
+                    if(typeof window.cookieconsent_options.content.target != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{target}}', window.cookieconsent_options.content.target);
+                    if(typeof window.cookieconsent_options.content.href != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{href}}', window.cookieconsent_options.content.href);
+                    if(typeof window.cookieconsent_options.content.link != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{link}}', window.cookieconsent_options.content.link);
+                }
+                // place html
+                div.innerHTML = iframeoverlayHtml
                 // add background color
                 if (window.cookieconsent_options.overlay.box.background) {
                     div.style.background = window.cookieconsent_options.overlay.box.background;
