@@ -22,7 +22,7 @@ import defaultL10n from './l10n/en';
   */
 window.addEventListener("load", function () {
     // handle Language Versions
-    if(typeof dpCookieConsentLang == 'undefined') {
+    if (typeof dpCookieConsentLang == 'undefined') {
         window.DPCookieConsentL10N = defaultL10n;
     }
     window.DPCookieConsentL10N.prototype.replace = function () {
@@ -30,6 +30,7 @@ window.addEventListener("load", function () {
     };
     // init Language Versions
     (new window.DPCookieConsentL10N()).replace();
+
     // Init Consent Helper
     function CookieConsent() {
         this.cookie_name = 'dp_cookieconsent_status';
@@ -91,6 +92,7 @@ window.addEventListener("load", function () {
 
         };
     }
+
     /** Async Load Ressources **/
     CookieConsent.prototype.asyncLoad = function (u, t, c) {
         var d = document,
@@ -122,12 +124,12 @@ window.addEventListener("load", function () {
     };
     /** fallback: getElementsByTagName **/
     CookieConsent.prototype.getCookieElementsByTag = function (tag, selector) {
-        if(typeof selector == 'undefined') selector = 'data-cookieconsent';
+        if (typeof selector == 'undefined') selector = 'data-cookieconsent';
         // element holder
         var elements = [];
         // check browser function
         if (typeof document.querySelectorAll == 'undefined') {
-            elements = document.querySelectorAll(tag + '['+selector+']');
+            elements = document.querySelectorAll(tag + '[' + selector + ']');
         } else {
             // fallback
             var temp = document.getElementsByTagName(tag);
@@ -187,11 +189,11 @@ window.addEventListener("load", function () {
              * prefer use data-src=""
              */
             if (element.getAttribute('data-src')) {
-                this.asyncJS(element.getAttribute('data-src'), function(e){
+                this.asyncJS(element.getAttribute('data-src'), function (e) {
                     window.DPCookieConsent.fireEvent('dp--cookie-fire', element);
                 });
             } else if (element.src) {
-                this.asyncJS(element.src, function(e){
+                this.asyncJS(element.src, function (e) {
                     window.DPCookieConsent.fireEvent('dp--cookie-fire', element);
                 });
             }
@@ -244,7 +246,7 @@ window.addEventListener("load", function () {
         // set CurrentState of checkboxes
         window.DPCookieConsent.prevCheckboxes = [];
         window.DPCookieConsent.checkboxes.map(box => {
-            if(box) {
+            if (box) {
                 window.DPCookieConsent.prevCheckboxes.push({
                     name: box.name,
                     checked: box.checked
@@ -274,7 +276,7 @@ window.addEventListener("load", function () {
         }
         // render default layout
         var layout = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieSelect');
-        if(layout.length > 0) {
+        if (layout.length > 0) {
             layout = layout[0].innerHTML;
         } else {
             layout = selections;
@@ -282,10 +284,10 @@ window.addEventListener("load", function () {
         // set Default values
         me.checkboxes.map(function (checkbox) {
             let checked = '';
-            if(checkbox.checked === true || checkbox.checked !== false && checkbox.checked.toLowerCase() === 'true') {
+            if (checkbox.checked === true || checkbox.checked !== false && checkbox.checked.toLowerCase() === 'true') {
                 checked = 'checked="checked"';
             }
-            layout = layout.replace('{{checked.'+checkbox.name+'}}', checked);
+            layout = layout.replace('{{checked.' + checkbox.name + '}}', checked);
         });
         // replace label
         layout = me.replaceLabels(layout);
@@ -293,9 +295,9 @@ window.addEventListener("load", function () {
         window.cookieconsent_options.content.cookieSelect = layout;
     };
     /** Replace Labels **/
-    CookieConsent.prototype.replaceLabels = function(text){
+    CookieConsent.prototype.replaceLabels = function (text) {
         for (var key in window.cookieconsent_options.content) {
-            text = text.replace('{{'+key+'}}', window.cookieconsent_options.content[key]);
+            text = text.replace('{{' + key + '}}', window.cookieconsent_options.content[key]);
         }
         return text;
     };
@@ -305,7 +307,7 @@ window.addEventListener("load", function () {
         var me = this;
         // load checkboxes
         var checkboxes = me.checkboxes.map(function (checkbox) {
-            return me.loadCheckbox( checkbox.name );
+            return me.loadCheckbox(checkbox.name);
         });
         // save Cookie Values
         this.saveCookie(checkboxes);
@@ -326,7 +328,7 @@ window.addEventListener("load", function () {
         var object = {};
         // build Store object
         values.map(function (e) {
-            if(e) object[e.id] = e.checked;
+            if (e) object[e.id] = e.checked;
         });
         // save value to local
         this.dpCookies = values;
@@ -373,33 +375,33 @@ window.addEventListener("load", function () {
         }
 
         // if not exist abort
-        if(!checkbox) {
+        if (!checkbox) {
             // write value back to element
             me.checkboxes.map((field, index) => {
                 // write to storage
-                if(setValue && field.name == fieldname){
+                if (setValue && field.name == fieldname) {
                     me.checkboxes[index].checked = checked;
                 }
             });
             // abort here
             return;
         }
-        if(setValue) {
+        if (setValue) {
             checkbox.checked = checked
         }
         // write value back to element
         me.checkboxes.map((field, index) => {
-           if(field.name == fieldname){
+            if (field.name == fieldname) {
                 me.checkboxes[index].checked = checkbox.checked;
-           }
+            }
         });
         // return element
         return checkbox;
     };
     /** Load Checkbox Description **/
-    CookieConsent.prototype.loadContentDescription = function(){
+    CookieConsent.prototype.loadContentDescription = function () {
         let cookieDesc = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieDesc');
-        if(cookieDesc.length > 0 ){
+        if (cookieDesc.length > 0) {
             cookieDesc = cookieDesc[0].innerHTML;
         } else {
             cookieDesc = description;
@@ -408,9 +410,9 @@ window.addEventListener("load", function () {
         window.cookieconsent_options.content.cookieDesc = this.replaceLabels(cookieDesc);
     };
     /** Load Revoke Button **/
-    CookieConsent.prototype.loadContentRevoke = function(){
+    CookieConsent.prototype.loadContentRevoke = function () {
         let revokeBtn = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieRevoke');
-        if(revokeBtn.length > 0){
+        if (revokeBtn.length > 0) {
             window.cookieconsent_options.revokeBtn = revokeBtn[0].innerHTML;
         } else {
             window.cookieconsent_options.revokeBtn = revokebutton;
@@ -418,9 +420,9 @@ window.addEventListener("load", function () {
     };
     /** default Setting **/
     CookieConsent.prototype.defaults = function () {
-        window.cookieconsent_options = merger(this.settings,  window.cookieconsent_options);
-        if(typeof window.cookieconsent_options_cookie != 'undefined') {
-            this.cookie = merger(this.cookie,  window.cookieconsent_options_cookie);
+        window.cookieconsent_options = merger(this.settings, window.cookieconsent_options);
+        if (typeof window.cookieconsent_options_cookie != 'undefined') {
+            this.cookie = merger(this.cookie, window.cookieconsent_options_cookie);
             console.log(this.cookie);
         }
     };
@@ -475,7 +477,7 @@ window.addEventListener("load", function () {
                 window.DPCookieConsent.setClass(true);
             },
             onInitialise: function (status) {
-                if (this.hasConsented() && (status == 'dismiss' || status == 'allow')){
+                if (this.hasConsented() && (status == 'dismiss' || status == 'allow')) {
                     // load Checkboxes
                     window.DPCookieConsent.loadCheckboxes();
                     // set falags
@@ -502,12 +504,12 @@ window.addEventListener("load", function () {
                 if (this.hasConsented() && (status == 'dismiss' || status == 'allow')) {
                     var reload = false;
                     // force reload check
-                    if(window.DPCookieConsent.settings.reloadOnRevoke && window.DPCookieConsent.prevCheckboxes) {
+                    if (window.DPCookieConsent.settings.reloadOnRevoke && window.DPCookieConsent.prevCheckboxes) {
                         window.DPCookieConsent.prevCheckboxes.map((box, index) => {
                             // has checked changed?
                             var current = window.DPCookieConsent.checkboxes[index];
-                            if(box.checked === true) {
-                                if(!current || current.checked == false) {
+                            if (box.checked === true) {
+                                if (!current || current.checked == false) {
                                     // set reload flag
                                     reload = true;
                                 }
@@ -518,7 +520,7 @@ window.addEventListener("load", function () {
                     window.DPCookieConsent.loadCookies();
                     window.DPCookieConsent.fireEvent('dp--cookie-accept');
                     // check reload status
-                    if(reload) {
+                    if (reload) {
                         // reload page
                         location.reload();
                     }
@@ -560,10 +562,10 @@ window.addEventListener("load", function () {
                     // load pref Status
                     me.loadCheckboxes();
                     var type = element.getAttribute('data-cookieconsent');
-                    me.checkboxes.map( (checkbox, index) => {
-                        if(checkbox.name == type) {
+                    me.checkboxes.map((checkbox, index) => {
+                        if (checkbox.name == type) {
                             me.loadCheckbox(checkbox.name, false, true);
-                        } else if( !me.popup.hasAnswered() ){
+                        } else if (!me.popup.hasAnswered()) {
                             me.loadCheckbox(checkbox.name, false, false);
                         }
                     });
@@ -585,8 +587,8 @@ window.addEventListener("load", function () {
                     // load pref Status
                     me.loadCheckboxes();
                     var type = element.getAttribute('data-cookieconsent');
-                    me.checkboxes.map( (checkbox, index) => {
-                        if(checkbox.name == type) {
+                    me.checkboxes.map((checkbox, index) => {
+                        if (checkbox.name == type) {
                             me.loadCheckbox(checkbox.name, false, false);
                         }
                     });
@@ -602,7 +604,7 @@ window.addEventListener("load", function () {
      */
     CookieConsent.prototype.fireEvent = function (name, element) {
         var event;
-        if(element){
+        if (element) {
             event = document.createEvent('CustomEvent');
             event.initCustomEvent(name, true, true, {
                 $el: element
@@ -624,7 +626,7 @@ window.addEventListener("load", function () {
         var elements = this.getCookieElementsByTag('iframe');
         // get overlay Template
         let iframeoverlayHtml = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieIframe');
-        if(iframeoverlayHtml.length > 0){
+        if (iframeoverlayHtml.length > 0) {
             iframeoverlayHtml = iframeoverlayHtml[0].innerHTML;
         } else {
             iframeoverlayHtml = iframeoverlay;
@@ -657,14 +659,14 @@ window.addEventListener("load", function () {
                     .replace('{{notice}}', notice)
                     .replace('{{desc}}', desc)
                     .replace('{{type}}', type)
-                    .replace('{{style}}', 'style="'+style+'"')
+                    .replace('{{style}}', 'style="' + style + '"')
                     .replace('{{btn}}', btn);
 
                 // prepare for link edit
-                if(typeof window.cookieconsent_options.content != 'undefined') {
-                    if(typeof window.cookieconsent_options.content.target != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{target}}', window.cookieconsent_options.content.target);
-                    if(typeof window.cookieconsent_options.content.href != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{href}}', window.cookieconsent_options.content.href);
-                    if(typeof window.cookieconsent_options.content.link != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{link}}', window.cookieconsent_options.content.link);
+                if (typeof window.cookieconsent_options.content != 'undefined') {
+                    if (typeof window.cookieconsent_options.content.target != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{target}}', window.cookieconsent_options.content.target);
+                    if (typeof window.cookieconsent_options.content.href != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{href}}', window.cookieconsent_options.content.href);
+                    if (typeof window.cookieconsent_options.content.link != 'undefined') iframeoverlayHtml = iframeoverlayHtml.replace('{{link}}', window.cookieconsent_options.content.link);
                 }
                 // place html
                 div.innerHTML = iframeoverlayHtml
