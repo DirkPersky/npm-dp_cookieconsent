@@ -677,7 +677,7 @@ window.addEventListener("load", function () {
                     div.style.color = window.cookieconsent_options.overlay.box.text;
                 }
                 // add Element to DOM
-                element.parentNode.appendChild(div);
+                element.parentNode.insertBefore(div, element.nextSibling);
             }
         }
     };
