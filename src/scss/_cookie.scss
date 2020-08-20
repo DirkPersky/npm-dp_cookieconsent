@@ -66,19 +66,19 @@
 
 /** Revoke Button **/
 .cc-revoke.dp--revoke {
-    transform: none !important;
-    text-decoration: none !important;
-
-    min-width: 40px;
-    height: 40px;
-    margin: 5px;
-    border-radius: 20px !important;
-
     line-height: 1;
     display: flex;
-    justify-content: center;
+
     align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+
+    margin: 5px;
     transition: all .3s ease-in-out;
+    transform: none !important;
+    text-decoration: none !important;
+    border-radius: 20px !important;
 
     i {
         font-size: 24px;
@@ -92,7 +92,7 @@
 
     &.cc-right {
         right: 0;
-        left: unset;
+        left: auto;
     }
 
     .dp--hover {
