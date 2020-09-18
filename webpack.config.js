@@ -1,8 +1,8 @@
 const path = require('path');
 const webpackConfig = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const packageJson = require('./package');
 
 class dpWebpack {
@@ -113,11 +113,14 @@ class dpWebpack {
         });
         // sass / scss loader for webpack
         this.webpackConfig.module.rules.push({
-            test: /\.(sass|scss)$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: ExtractTextPlugin.extract([
-                'css-loader', 'sass-loader'
-            ])
+            test: /\.(sa|sc|c)ss$/,
+            use: [
+                {
+                    loader: MiniCssExtractPlugin.loader
+                },
+                'css-loader',
+                'sass-loader',
+            ],
         });
 
         // Template
@@ -152,18 +155,25 @@ class dpWebpack {
                 clearConsole: true
             })
         );
-        // say ExtractTextPlugin to export his results to style.css
+        // say MiniCssExtractPlugin to export his results to style.css
         this.webpackConfig.plugins.push(
-            new ExtractTextPlugin({ // define where to save the file
-                filename: '../css/'+this.getName()+'.css',
-                allChunks: true,
+            new MiniCssExtractPlugin({ // define where to save the file
+                filename: '../css/dp_cookieconsent.css',
             })
         );
         // copy files
         this.webpackConfig.plugins.push(
-            new CopyPlugin([
-                { from: './src/js/l10n', to: './l10n', ignore: ['en.js'] },
-            ]),
+            new CopyPlugin({
+                patterns: [
+                    {
+                        from: './src/js/l10n',
+                        to: './l10n',
+                        globOptions: {
+                            ignore: ['**/en.js']
+                        }
+                    }
+                ],
+            }),
         );
 
         return this;
