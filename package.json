@@ -20,7 +20,7 @@
   ],
   "author": "Dirk Persky",
   "homepage": "http://dp-wired.de/",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/DirkPersky/npm-dp_cookieconsent/issues"
   },
