@@ -18,3 +18,10 @@ before_script:
 # Test scripts
 script:
   - npm test
+
+deploy:
+  provider: npm
+  email: "YOUR_EMAIL_ADDRESS"
+  api_key: "YOUR_AUTH_TOKEN"
+  on:
+    tags: true

@@ -47,5 +47,8 @@
     "sass-loader": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

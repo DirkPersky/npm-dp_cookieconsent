@@ -688,4 +688,3 @@ window.addEventListener("load", function () {
     /** Start Script Handling **/
     window.DPCookieConsent.init();
 });
-
