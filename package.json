@@ -26,7 +26,8 @@
   },
   "scripts": {
     "build": "webpack --hide-modules --mode production --config webpack.config.js",
-    "watch": "webpack --watch --hide-modules --mode production --config webpack.config.js"
+    "watch": "webpack --watch --hide-modules --mode production --config webpack.config.js",
+    "test": "jshint src/js/cookie.js --config .jshintrc"
   },
   "devDependencies": {
     "@babel/core": "latest",

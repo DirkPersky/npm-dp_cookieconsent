@@ -1,0 +1,19 @@
+language: node_js
+
+node_js:
+  - "node"
+
+cache:
+  npm: false
+
+# Do not build feature branches
+branches:
+  only:
+    - master
+    - /^?([0-9]+\.){1,2}(x|[0-9]+)-?[a-z]*[1-9]*$/
+
+before_script:
+  - npm install
+
+# Test scripts
+script: test
