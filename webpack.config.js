@@ -1,5 +1,4 @@
 const path = require('path');
-const webpackConfig = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -71,8 +70,9 @@ class dpWebpack {
      */
     buildOutput() {
         this.webpackConfig.output = {
-            path: path.resolve(__dirname,  this.config.publicPath+'/js'),
-            filename: this.getName()+'.js'
+            path: path.resolve(__dirname, this.config.publicPath + '/js'),
+            filename: this.getName() + '.js',
+            publicPath: this.config.publicPath
         };
 
         return this;

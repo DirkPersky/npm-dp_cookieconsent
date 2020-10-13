@@ -17,7 +17,7 @@ before_script:
 
 # Test scripts
 script:
-  - npm test
+  - npm run test
 
 jobs:
   include:
@@ -25,9 +25,9 @@ jobs:
       if: tag IS present
       node_js: "node"
       before_script:
-        - npm install
+        - npm ci
       script:
-        - npm build
+        - npm run build
       deploy:
         provider: npm
         email: "$NPM_MAIL"
