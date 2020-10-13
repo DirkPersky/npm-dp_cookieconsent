@@ -16,4 +16,5 @@ before_script:
   - npm i -g jshint
 
 # Test scripts
-script: test
+script:
+  - npm test
