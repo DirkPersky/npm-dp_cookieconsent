@@ -19,9 +19,16 @@ before_script:
 script:
   - npm test
 
-deploy:
-  provider: npm
-  email: "YOUR_EMAIL_ADDRESS"
-  api_key: "YOUR_AUTH_TOKEN"
-  on:
-    tags: true
+jobs:
+  include:
+    - stage: npm release
+      node_js: "node"
+      before_script:
+        - npm install
+      script:
+        - npm build
+      deploy:
+        provider: npm
+        email: "$NPM_MAIL"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
