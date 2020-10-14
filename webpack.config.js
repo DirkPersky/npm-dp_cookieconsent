@@ -72,7 +72,7 @@ class dpWebpack {
         this.webpackConfig.output = {
             path: path.resolve(__dirname, this.config.publicPath + '/js'),
             filename: this.getName() + '.js',
-            publicPath: this.config.publicPath
+            // publicPath: this.config.publicPath
         };
 
         return this;

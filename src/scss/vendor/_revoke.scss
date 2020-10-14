@@ -1,0 +1,68 @@
+
+.cc-revoke {
+  line-height: 1.5em;
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  padding: .5em;
+  cursor: pointer;
+
+  &:hover {
+	text-decoration: underline
+  }
+
+  &.cc-top {
+	top: 0;
+	left: 3em;
+	border-bottom-right-radius: .5em;
+	border-bottom-left-radius: .5em;
+  }
+
+  &.cc-bottom {
+	bottom: 0;
+	left: 3em;
+	border-top-left-radius: .5em;
+	border-top-right-radius: .5em
+  }
+
+  &.cc-left {
+	right: unset;
+	left: 3em;
+  }
+
+  &.cc-right {
+	right: 3em;
+	left: unset
+  }
+
+  @media print {
+	display: none
+  }
+
+  &.cc-animate {
+	transition: transform 1s ease;
+	transition: transform 1s ease, -webkit-transform 1s ease;
+
+	&.cc-top {
+	  transform: translateY(-2em)
+	}
+
+	&.cc-bottom {
+	  transform: translateY(2em)
+	}
+
+	&.cc-active {
+	  &.cc-bottom {
+		transform: translateY(0)
+	  }
+
+	  &.cc-top {
+		transform: translateY(0)
+	  }
+	}
+  }
+
+}
