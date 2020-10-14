@@ -12,15 +12,15 @@ branches:
     - master
     - /^?([0-9]+\.){1,2}(x|[0-9]+)-?[a-z]*[1-9]*$/
 
-before_script:
-  - npm i -g jshint
-
-# Test scripts
-script:
-  - npm run test
-
 jobs:
   include:
+    - stage: test
+      node_js: "node"
+      before_script:
+        - npm i -g jshint
+      script:
+        - npm run test
+
     - stage: npm release
       if: tag IS present
       node_js: "node"
