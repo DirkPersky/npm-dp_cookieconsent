@@ -421,6 +421,16 @@ window.addEventListener("load", function () {
     /** default Setting **/
     CookieConsent.prototype.defaults = function () {
         window.cookieconsent_options = merger(this.settings, window.cookieconsent_options);
+        // if Wire style change button style
+        if (window.cookieconsent_options.theme == 'wire') {
+            window.cookieconsent_options.palette.button.border = window.cookieconsent_options.palette.button.background;
+            window.cookieconsent_options.palette.button.background = 'transparent';
+        }
+        // remove theme block if block or wire
+        if (['block', 'wire'].indexOf(window.cookieconsent_options.theme) != -1) {
+            delete window.cookieconsent_options.theme;
+        }
+        // overwrite Cookie settings
         if (typeof window.cookieconsent_options_cookie != 'undefined') {
             this.cookie = merger(this.cookie, window.cookieconsent_options_cookie);
             console.log(this.cookie);
