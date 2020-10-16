@@ -25,13 +25,12 @@
     "url": "https://github.com/DirkPersky/npm-dp_cookieconsent/issues"
   },
   "scripts": {
-    "build": "webpack --hide-modules --mode production --config webpack.config.js",
-    "watch": "webpack --watch --hide-modules --mode production --config webpack.config.js",
+    "build": "webpack --stats-colors --mode production --config webpack.config.js",
+    "watch": "webpack --stats-colors --watch --mode production --config webpack.config.js",
     "test": "jshint src/js/cookie.js --config .jshintrc"
   },
   "devDependencies": {
     "@babel/core": "latest",
-    "@babel/preset-env": "latest",
     "babel-loader": "latest",
     "clean-css": "latest",
     "copy-webpack-plugin": "latest",

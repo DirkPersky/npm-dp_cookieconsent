@@ -3,6 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const packageJson = require('./package');
+const TerserPlugin = require('terser-webpack-plugin');
 
 class dpWebpack {
 
@@ -33,7 +34,10 @@ class dpWebpack {
         // Uglify & Compress JS
         if(this.isProduction()) {
             this.webpackConfig.optimization = {
-                minimize: true
+                minimize: true,
+                minimizer: [new TerserPlugin({
+                    extractComments: false,
+                })],
             };
         }
     }
