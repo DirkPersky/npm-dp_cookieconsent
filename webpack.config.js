@@ -28,9 +28,7 @@ class dpWebpack {
             resolve: {
                 extensions: [".js"]
             },
-            node: {
-                fs: "empty" // avoids error messages
-            }
+            target: ['es5']
         };
         // Uglify & Compress JS
         if(this.isProduction()) {
@@ -72,7 +70,7 @@ class dpWebpack {
         this.webpackConfig.output = {
             path: path.resolve(__dirname, this.config.publicPath + '/js'),
             filename: this.getName() + '.js',
-            // publicPath: this.config.publicPath
+            publicPath: ''
         };
 
         return this;
@@ -87,7 +85,11 @@ class dpWebpack {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env'],
+                    presets: [
+                        [
+                            '@babel/preset-env'
+                        ]
+                    ],
                 }
             }
         });
