@@ -1,12 +1,12 @@
 .cc-floating {
 
   > .cc-link {
-	margin-bottom: 1rem
+	margin-bottom: 1em
   }
 
   .cc-message {
 	display: block;
-	padding-bottom: 1.5rem;
+	padding-bottom: 1.5em;
   }
 
   .cc-compliance > .cc-btn {
@@ -15,8 +15,8 @@
 
   &.cc-window {
 	flex-direction: column;
-	max-width: 24rem;
-	padding: 2rem;
+	max-width: 24em;
+	padding: 2em;
 
 	@media screen and (max-width: 414px) and (orientation: portrait), screen and (max-width: 736px) and (orientation: landscape) {
 	  right: 0;
@@ -33,7 +33,7 @@
    * Themes
    */
   &.cc-theme-classic {
-	padding: 1.2rem;
+	padding: 1.2em;
 	border-radius: 5px;
 
 	&.cc-type-info {
@@ -53,7 +53,7 @@
 	padding: 0;
 
 	.cc-message {
-	  padding: 2rem 2rem 1.5rem;
+	  padding: 2em 2em 1.5em;
 	}
 
 	.cc-btn + .cc-btn {
