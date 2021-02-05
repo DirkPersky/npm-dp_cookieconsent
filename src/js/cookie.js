@@ -641,8 +641,6 @@ window.addEventListener("load", function () {
         } else {
             iframeoverlayHtml = iframeoverlay;
         }
-
-
         // loop elements and create overlay
         if (elements.length > 0) {
             var key;
@@ -653,6 +651,10 @@ window.addEventListener("load", function () {
                     desc = element.getAttribute('data-cookieconsent-description') || window.cookieconsent_options.content.media.desc,
                     btn = element.getAttribute('data-cookieconsent-btn') || window.cookieconsent_options.content.media.btn,
                     type = element.getAttribute('data-cookieconsent');
+                // check if overlay is already done
+                if(element.hasAttribute('data-cookieconsent-overlay-loaded')) continue;
+                // mark as done
+                element.setAttribute('data-cookieconsent-overlay-loaded', 'loaded');
                 // create overlay
                 var div = document.createElement('div');
                 div.classList.add("dp--overlay");
