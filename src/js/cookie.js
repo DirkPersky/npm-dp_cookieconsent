@@ -17,8 +17,8 @@ import merger from 'lodash.merge';
 import defaultL10n from './l10n/en';
 /*!
   * Cookie Consent Adapter
-  * Copyright 2019 Dirk Persky (https://github.com/DirkPersky/typo3-dp_cookieconsent)
-  * Licensed under GPL v3+ (https://github.com/DirkPersky/typo3-dp_cookieconsent/blob/master/LICENSE)
+  * Copyright 2019 Dirk Persky (https://github.com/DirkPersky/npm-dp_cookieconsent/issues)
+  * Licensed under AGPL v3+ (https://github.com/DirkPersky/npm-dp_cookieconsent/blob/master/LICENSE)
   */
 window.addEventListener("load", function () {
     // handle Language Versions
