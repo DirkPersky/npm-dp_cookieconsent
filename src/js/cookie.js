@@ -168,6 +168,19 @@ window.addEventListener("load", function () {
         window.DPCookieConsent.fireEvent('dp--cookie-iframe', iframe);
     };
     /**
+     * Load Content Loader
+     * @param element
+     */
+    CookieConsent.prototype.callContentHandler = function (element) {
+        // add Loaded class
+        element.classList.add("dp--loaded");
+        // override attribute to only load once
+        element.setAttribute('data-cookieconsent-loaded', element.getAttribute('data-cookieconsent'));
+        element.removeAttribute('data-cookieconsent');
+        /** call Inline Event **/
+        window.DPCookieConsent.fireEvent('dp--cookie-conent', element);
+    };
+    /**
      * Load Script codes
      * @param element
      */
@@ -208,6 +221,8 @@ window.addEventListener("load", function () {
         var elements = this.getCookieElementsByTag('script');
         // load Iframes
         elements = elements.concat(this.getCookieElementsByTag('iframe'));
+        // load contents
+        elements = elements.concat(this.getCookieElementsByTag('dp-content'));
         // elements exist?
         if (elements.length > 0) {
             var key;
@@ -236,6 +251,9 @@ window.addEventListener("load", function () {
                     switch (elements[key].tagName.toUpperCase()) {
                         case 'IFRAME':
                             this.callIframeHandler(elements[key]);
+                            break;
+                        case 'DP-CONTENT':
+                            this.callContentHandler(elements[key]);
                             break;
                         default:
                             this.callScriptHandler(elements[key]);
@@ -627,13 +645,20 @@ window.addEventListener("load", function () {
         document.dispatchEvent(event);
     };
     /**
+     * init Overlays Typs
+     */
+    CookieConsent.prototype.overlays = function (){
+        this.overlaysView('iframe');
+        this.overlaysView('dp-content');
+    }
+    /**
      * create Overlays
      */
-    CookieConsent.prototype.overlays = function () {
+    CookieConsent.prototype.overlaysView = function (tag) {
         // check if active
         if (!window.cookieconsent_options.overlay.notice) return;
         // elements iFrame
-        var elements = this.getCookieElementsByTag('iframe');
+        var elements = this.getCookieElementsByTag(tag);
         // get overlay Template
         let iframeoverlayHtml = DPCookieConsent.getCookieElementsByTag('script', 'data-dp-cookieIframe');
         if (iframeoverlayHtml.length > 0) {

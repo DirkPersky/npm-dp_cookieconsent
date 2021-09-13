@@ -93,8 +93,6 @@ With the `class="dp--iframe"` the iFrame is hidden in default and would be shown
 #### iframe overlay
 **if you want to add an overlay to accept Cookies outside from the cookie hint**
 ![iframe overlay](example/iframe-overlay.png)
-you can enable this feature in the TYPO3-constants<br/>
-`window.cookieconsent_options.overlay.notice = true`
 
 you also can modify the text in this hint individuel per iframe
 ```html
@@ -124,6 +122,23 @@ or accept/deny cookies outside of the cookie hin, you can use the followed examp
 
 **deny cookies**<br/>
 `window.DPCookieConsent.forceDeny(this)`
+
+### load content after accepting
+**if you want to add contents that will only be visible if the consent hint is accepted**
+
+Your HTML markup for this is
+```html
+<dp-content
+    data-cookieconsent="statistics" 
+    class="dp--iframe"
+
+    data-cookieconsent-notice="Cookie Notice"
+    data-cookieconsent-description="Loading this...."
+    data-cookieconsent-btn="allow cookies and load this ...."
+>
+    YOUR CONTENT
+</dp-content>
+```
 
 ### Events
 | Event                     | Description                                   | Options                                   |
