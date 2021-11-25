@@ -30,13 +30,13 @@
     "test": "jshint src/js/cookie.js --config .jshintrc"
   },
   "devDependencies": {
-    "@babel/core": "latest",
+    "@babel/core": "7.12.1",
     "babel-loader": "latest",
     "clean-css": "latest",
     "copy-webpack-plugin": "latest",
     "css-loader": "latest",
     "file-loader": "latest",
-    "friendly-errors-webpack-plugin": "latest",
+    "friendly-errors-webpack-plugin": "1.6.1",
     "html-loader": "latest",
     "jshint": "latest",
     "json-loader": "latest",
@@ -44,8 +44,8 @@
     "mini-css-extract-plugin": "latest",
     "node-sass": "latest",
     "sass-loader": "latest",
-    "webpack": "latest",
-    "webpack-cli": "latest"
+    "webpack": "5.1.3",
+    "webpack-cli": "4.0.0"
   },
   "publishConfig": {
     "access": "public"
