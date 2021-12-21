@@ -167,6 +167,25 @@ window.addEventListener("load", function () {
         /** call Inline Event **/
         window.DPCookieConsent.fireEvent('dp--cookie-iframe', iframe);
     };
+    CookieConsent.prototype.ajax = function (method, url , resolve , reject){
+        var request = new XMLHttpRequest();
+        request.open(method, url);
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        request.setRequestHeader('Content-type', 'text/html');
+
+        request.onload = function () {
+            if (request.status < 200 || request.status >= 300) {
+                reject(request);
+            } else {
+                resolve(request);
+            }
+        };
+        request.onerror = function () {
+            reject(request);
+        };
+
+        request.send();
+    }
     /**
      * Load Content Loader
      * @param element
@@ -177,8 +196,17 @@ window.addEventListener("load", function () {
         // override attribute to only load once
         element.setAttribute('data-cookieconsent-loaded', element.getAttribute('data-cookieconsent'));
         element.removeAttribute('data-cookieconsent');
-        /** call Inline Event **/
-        window.DPCookieConsent.fireEvent('dp--cookie-conent', element);
+        // run ajax Call
+        var src = element.getAttribute('data-src');
+        if (src && src.length > 0) {
+            this.ajax('GET', src, function (response){
+                element.innerHTML = response.response;
+                window.DPCookieConsent.fireEvent('dp--cookie-conent', element);
+            }, function (error){ });
+        } else {
+            /** call Inline Event **/
+            window.DPCookieConsent.fireEvent('dp--cookie-conent', element);
+        }
     };
     /**
      * Load Script codes
@@ -647,7 +675,7 @@ window.addEventListener("load", function () {
     /**
      * init Overlays Typs
      */
-    CookieConsent.prototype.overlays = function (){
+    CookieConsent.prototype.overlays = function () {
         this.overlaysView('iframe');
         this.overlaysView('dp-content');
     }
@@ -677,7 +705,7 @@ window.addEventListener("load", function () {
                     btn = element.getAttribute('data-cookieconsent-btn') || window.cookieconsent_options.content.media.btn,
                     type = element.getAttribute('data-cookieconsent');
                 // check if overlay is already done
-                if(element.hasAttribute('data-cookieconsent-overlay-loaded')) continue;
+                if (element.hasAttribute('data-cookieconsent-overlay-loaded')) continue;
                 // mark as done
                 element.setAttribute('data-cookieconsent-overlay-loaded', 'loaded');
                 // create overlay

@@ -139,6 +139,7 @@ Your HTML markup for this is
     YOUR CONTENT
 </dp-content>
 ```
+if you want load ajax content into the content add the `data-src="URL"` attribute.
 
 ### Events
 | Event                     | Description                                   | Options                                   |

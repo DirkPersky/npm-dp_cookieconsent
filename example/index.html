@@ -56,12 +56,12 @@
     <script src="../dest/js/l10n/de.js" type="application/javascript"></script>
     <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
 
-    <script data-cookieconsent="statistics" type="text/plain">
+    <script data-cookieconsent-disabled="statistics" type="text/plain">
             alert('Accep statistics');
 
     </script>
 
-    <script data-cookieconsent="marketing" type="text/plain">
+    <script data-cookieconsent-disabled="marketing" type="text/plain">
             alert('Accep marketing');
 
     </script>
@@ -105,6 +105,16 @@
 >
 </iframe>
 
+<dp-content
+        data-cookieconsent="statistics"
+        class="dp--iframe"
 
+        data-cookieconsent-notice="DYN Content"
+        data-cookieconsent-description="Loading this...."
+        data-cookieconsent-btn="allow cookies and load this ...."
+        data-src="./ajax.html"
+>
+    YOUR CONTENT
+</dp-content>
 </body>
 </html>
