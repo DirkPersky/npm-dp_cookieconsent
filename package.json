@@ -1,8 +1,30 @@
 {
-  "name": "dp_cookie_consnet",
-  "version": "1.0.0",
-  "description": "NPM Integration with webpack",
-  "main": "index.js",
+  "name": "@dirkpersky/dp_cookieconsent",
+  "version": "2.0.0",
+  "description": "This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin Cookie Consent. Extended with an Script and iFrame helper, so it works with the ePrivacy law.",
+  "style": "dist/css/dp_cookieconsent.css",
+  "sass": "src/scss/style.scss",
+  "js": "src/js/cookie.js",
+  "main": "dist/js/dp_cookieconsent.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DirkPersky/npm-dp_cookieconsent.git"
+  },
+  "keywords": [
+    "cookieconsent",
+    "DSGVO",
+    "cookie",
+    "consent",
+    "ePrivacy",
+    "C-673/17",
+    "TTDSG"
+  ],
+  "author": "Dirk Persky",
+  "homepage": "http://dp-wired.de/",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/DirkPersky/npm-dp_cookieconsent/issues"
+  },
   "scripts": {
     "dev": "npm run development",
     "development": "webpack --stats-colors --mode development",
@@ -11,15 +33,6 @@
     "production": "webpack --stats-colors --mode production",
     "build": "npm run prod"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DirkPersky/dp_cookieconsent.git"
-  },
-  "keywords": [
-    "JavaScript"
-  ],
-  "author": "Dirk Persky",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "latest",
     "@babel/plugin-transform-arrow-functions": "latest",
@@ -41,6 +54,7 @@
     "webpack": "latest",
     "webpack-cli": "latest"
   },
-  "dependencies": {
+  "publishConfig": {
+    "access": "dest"
   }
 }
