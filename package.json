@@ -55,6 +55,6 @@
     "webpack-cli": "latest"
   },
   "publishConfig": {
-    "access": "dest"
+    "access": "public"
   }
 }
