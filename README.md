@@ -16,37 +16,34 @@ npm i @dirkpersky/dp_cookieconsent
 ## Config
 **window.cookieconsent_options.**
 
-| Property                  | Description                                   | Options                                   | Default |
-| ------------------------- | --------------------------------------------- | ----------------------------------------- | -------:|
-| content.href              | URL to Data Protection                        |                                           | |
-| content.target            | Link target of read more link                 |                                           | _blank |
-| theme                     | Layout of the consent                         | edgeless, block, wire, classic            | edgeless |
-| position                  | position of the consent                       | bottom, top, bottom-left, bottom-right    | bottom-right |
-| dismissOnScroll           | auto accecpt consent on scroll after XX px    |                                           | | 
-| autoOpen                  | The application automatically decide whether the popup should open | true, false          | true | 
-| revokable                 | Some countries REQUIRE that a user can change their mind | true, false                    | true | 
-| type                      | consent types *([screenshot](#types))*        | info, opt-out, opt-in                     | info |
-| layout                    | consent layout                                | basic, dpextend                           | dpextend |
-| reloadOnRevoke            | reload page after consent revoke (stop tracking) | true, false                               | false |
-| checkboxes.statistics     | pre check statistics in checkboxes layout     | true, false                               | false |
-| checkboxes.marketing      | pre check marketing in checkboxes layout      | true, false                               | false |
-| overlay.notice            | enable or disable overlay                     | true, false                               | false |
-| overlay.box.background    | Overlay: Background color                     | rgba(), #hexa                             | rgba(0,0,0,.8) |
-| overlay.box.text          | Overlay: text color                           | rgb(), #hexa                              | #fff |
-| overlay.button.background | Overlay: Button Background color              | rgba(), #hexa                             | #b81839 |
-| overlay.button.text       | Overlay: Button text color                    | rgb(), #hexa                              | #fff |
-| palette.popup.background  | Consent Background color                      | rgba(), #hexa                             | rgba(0,0,0,.8) |
-| palette.popup.text        | Consent Text color                            | rgb(), #hexa                              | #fff |
-| palette.button.background | Consent Button Background color               | rgba(), #hexa                             | #f96332 |
-| palette.button.text       | Consent Button Text color                     | rgb(), #hexa                              | #fff |
+| Property                  | Description                                              | Options                                |        Default |
+|---------------------------|----------------------------------------------------------|----------------------------------------|---------------:|
+| content.href              | URL to Data Protection                                   |                                        |                |
+| content.target            | Link target of read more link                            |                                        |         _blank |
+| theme                     | Layout of the consent                                    | edgeless                               |       edgeless |
+| position                  | position of the consent                                  | bottom, top, bottom-left, bottom-right |   bottom-right |
+| dismissOnScroll           | auto accecpt consent on scroll after XX px               |                                        |                | 
+| revokable                 | Some countries REQUIRE that a user can change their mind | true, false                            |           true | 
+| reloadOnRevoke            | reload page after consent revoke (stop tracking)         | true, false                            |          false |
+| type                      | consent types *([screenshot](#types))*                   | opt-in                                 |         opt-in |
+| checkboxes.statistics     | pre check statistics in checkboxes layout                | true, false                            |          false |
+| checkboxes.marketing      | pre check marketing in checkboxes layout                 | true, false                            |          false |
+| overlay.notice            | enable or disable overlay                                | true, false                            |          false |
+| overlay.box.background    | Overlay: Background color                                | rgba(), #hexa                          | rgba(0,0,0,.8) |
+| overlay.box.text          | Overlay: text color                                      | rgb(), #hexa                           |           #fff |
+| overlay.button.background | Overlay: Button Background color                         | rgba(), #hexa                          |        #b81839 |
+| overlay.button.text       | Overlay: Button text color                               | rgb(), #hexa                           |           #fff |
+| palette.popup.background  | Consent Background color                                 | rgba(), #hexa                          | rgba(0,0,0,.8) |
+| palette.popup.text        | Consent Text color                                       | rgb(), #hexa                           |           #fff |
+| palette.button.background | Consent Button Background color                          | rgba(), #hexa                          |        #f96332 |
+| palette.button.text       | Consent Button Text color                                | rgb(), #hexa                           |           #fff |
 
 
 ### types
-the screenshots are basesd one the `window.cookieconsent_options.layout = dpextend`
 
-| info                                 | opt-out                                 | opt-in                                 |
-| ------------------------------------ | --------------------------------------- | -------------------------------------- |
-| ![info](example/type_info.png) | ![info](example/type_opt-out.png) | ![info](example/type_opt-in.png) |
+| opt-in                                 |
+|----------------------------------------|
+| ![info](example/consent-box.png)       |
 
 ## Features
 

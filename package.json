@@ -1,53 +1,46 @@
 {
-  "name": "@dirkpersky/dp_cookieconsent",
-  "version": "1.6.0",
-  "description": "This Plugin includes the most popular solution to the EU Cookie law JavaScript Plugin Cookie Consent. Extended with an Script and iFrame helper, so it works with the ePrivacy law.",
-  "style": "dist/css/dp_cookieconsent.css",
-  "sass": "src/scss/style.scss",
-  "js": "src/js/cookie.js",
-  "main": "dist/js/dp_cookieconsent.js",
+  "name": "dp_cookie_consnet",
+  "version": "1.0.0",
+  "description": "NPM Integration with webpack",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "webpack --stats-colors --mode development",
+    "watch": "webpack --stats-colors --watch --progress --mode development",
+    "prod": "npm run production",
+    "production": "webpack --stats-colors --mode production",
+    "build": "npm run prod"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DirkPersky/npm-dp_cookieconsent.git"
+    "url": "https://github.com/DirkPersky/dp_cookieconsent.git"
   },
   "keywords": [
-    "cookieconsent",
-    "DSGVO",
-    "cookie",
-    "consent",
-    "ePrivacy",
-    "C-673/17"
+    "JavaScript"
   ],
   "author": "Dirk Persky",
-  "homepage": "http://dp-wired.de/",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/DirkPersky/npm-dp_cookieconsent/issues"
-  },
-  "scripts": {
-    "build": "webpack --stats-colors --mode production --config webpack.config.js",
-    "watch": "webpack --stats-colors --watch --mode production --config webpack.config.js",
-    "test": "jshint src/js/cookie.js --config .jshintrc"
-  },
+  "license": "ISC",
   "devDependencies": {
-    "@babel/core": "7.12.1",
+    "@babel/core": "latest",
+    "@babel/plugin-transform-arrow-functions": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-typescript": "latest",
     "babel-loader": "latest",
     "clean-css": "latest",
     "copy-webpack-plugin": "latest",
+    "core-js": "latest",
     "css-loader": "latest",
     "file-loader": "latest",
-    "friendly-errors-webpack-plugin": "1.6.1",
     "html-loader": "latest",
     "jshint": "latest",
-    "json-loader": "latest",
-    "lodash.merge": "^4.6.2",
+    "lodash": "latest",
     "mini-css-extract-plugin": "latest",
     "node-sass": "latest",
+    "postcss-loader": "latest",
     "sass-loader": "latest",
-    "webpack": "5.1.3",
-    "webpack-cli": "4.0.0"
+    "webpack": "latest",
+    "webpack-cli": "latest"
   },
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
   }
 }

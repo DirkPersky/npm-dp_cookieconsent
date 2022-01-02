@@ -30,40 +30,52 @@
                 </button>
             </div>
         </div>
+
     </script>
 
+    <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
     <script type="text/javascript">
-        window.cookieconsent_options_cookie = {
 
-            // The cookies expire date, specified in days (specify -1 for no expiry)
-            expiryDays: 30,
-        }
         window.cookieconsent_options = {
-            reloadOnRevoke: true,
-            content: {
-                href: '/datenschutz',
-                target: '_blank',
-            },
-            palette: {
-                button: {
-                    background: 'red',
+            overlay: {
+                notice: true,
+                box: {
+                    background: 'rgba(0,0,0,.8)',
+                    text: '#fff'
+                },
+                btn: {
+                    background: '#f96332',
+                    text: '#fff'
                 }
             },
             theme: 'edgeless',
-            position: 'top'
+            position: 'bottom-right',
+            type: 'opt-in',
+            revokable: true,
+            reloadOnRevoke: true,
+            checkboxes: {"statistics": false, "marketing": false},
+            palette: {
+                popup: {
+                    background: 'rgba(0,0,0,.8)',
+                    text: '#FFFFFF'
+                },
+                button: {
+                    background: '#f96332',
+                    text: '#fff',
+                }
+            }
         };
+
     </script>
-    <script src="../dest/js/l10n/de.js" type="application/javascript"></script>
+    <!--    <script src="../dest/js/l10n/de.js" type="application/javascript"></script>-->
     <script src="../dest/js/dp_cookieconsent.js" type="application/javascript"></script>
 
-    <script data-cookieconsent-disabled="statistics" type="text/plain">
+    <script data-cookieconsent="statistics" type="text/plain">
             alert('Accep statistics');
-
     </script>
 
-    <script data-cookieconsent-disabled="marketing" type="text/plain">
+    <script data-cookieconsent="marketing" type="text/plain">
             alert('Accep marketing');
-
     </script>
 </head>
 <body>

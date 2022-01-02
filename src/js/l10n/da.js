@@ -2,7 +2,7 @@ function dpCookieConsentLang() {
     this.lang = {
         "message": "Vi bruger cookies og andre tracking-teknologier for at personificere og forbedre din brugeroplevelse. Ved at forsætte på vores website accepterer du dette.",
         "dismiss": "tillad cookies",
-        "allow": "tillad cookies",
+        "allow": "gem",
         "allow-all": "alle accepterer",
         "deny": "afvis",
         "policy": "Cookie-politik",

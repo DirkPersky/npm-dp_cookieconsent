@@ -2,7 +2,7 @@ function dpCookieConsentLang() {
     this.lang = {
         "message": "We use cookies and other tracking technologies to personalize and improve your experience. By continuing to use our website you consent to this.",
         "dismiss": "allow cookies",
-        "allow": "allow cookies",
+        "allow": "save",
         "allow-all": "allow all!",
         "deny": "decline",
         "policy": "Cookie Policy",

@@ -1,22 +1,17 @@
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const packageJson = require('./package');
+const webpack = require('webpack');
+let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
-class dpWebpack {
 
-    getName(){
-        let name = 'dp_cookieconsent';
-        return name.replace('/','-');
-    }
+class WebpackConfig {
     /**
      * Create a new instance.
      */
     constructor() {
         this.config = {
-            publicPath: './dest',
+            publicPath: 'dest'
         };
 
         this.webpackConfig = {
@@ -27,12 +22,12 @@ class dpWebpack {
                 rules: []
             },
             resolve: {
-                extensions: [".js"]
+                extensions: [".ts", ".tsx", ".js"]
             },
-            target: ['es5']
+            target: ['web', 'es5'],
         };
         // Uglify & Compress JS
-        if(this.isProduction()) {
+        if (this.isProduction()) {
             this.webpackConfig.optimization = {
                 minimize: true,
                 minimizer: [new TerserPlugin({
@@ -41,9 +36,16 @@ class dpWebpack {
             };
         }
     }
-    isProduction(){
-        return (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') ? true: false;
+
+    getName() {
+        let name = 'dp_cookieconsent';
+        return name.replace('/', '-');
     }
+
+    isProduction() {
+        return (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') ? true : false;
+    }
+
     /**
      * Build the Webpack configuration object.
      */
@@ -56,17 +58,19 @@ class dpWebpack {
 
         return this.webpackConfig;
     }
+
     /**
      * Build the entry object.
      */
     buildEntry() {
         this.webpackConfig.entry = [
-            './'+packageJson.js,
-            './'+packageJson.sass
+            './src/js/dp_cookieconsent.js',
+            './src/scss/style.scss'
         ];
 
         return this;
     }
+
     /**
      * Build the output object.
      */
@@ -74,37 +78,25 @@ class dpWebpack {
         this.webpackConfig.output = {
             path: path.resolve(__dirname, this.config.publicPath + '/js'),
             filename: this.getName() + '.js',
-            publicPath: ''
+            publicPath: '',
         };
 
         return this;
     }
+
     /**
      * Build the rules array.
      */
     buildRules() {
-        // JavaScript & TYPESCRIPT HANDLER
-        this.webpackConfig.module.rules.push({
-            test: /\.(js)x?$/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        [
-                            '@babel/preset-env'
-                        ]
-                    ],
-                }
-            }
-        });
         // Copy Fonts to Public dir
         this.webpackConfig.module.rules.push({
-            test: /\.(woff2?|ttf|eot|svg|otf)$/,
-            loader: 'file-loader',
-            options: {
-                name: path => {
+            test: /\.(woff2?|ttf|eot|svg|otf)/,
+            type: 'asset',
+            generator: {
+                filename: path => {
+                    path = path.filename;
                     if (!/node_modules|bower_components/.test(path)) {
-                        return '../fonts/[name].[ext]?[hash]'.replace(/@/g, '');
+                        return '../fonts/[name][ext][query]'.replace(/@/g, '');
                     }
 
                     return '../fonts/' + path
@@ -112,59 +104,71 @@ class dpWebpack {
                         .replace(/@/g, '')
                         .replace(
                             /((.*(node_modules|bower_components))|fonts|font|assets)\//g, ''
-                        ) + '?[hash]';
-                },
-                publicPath: ''
+                        ) + '[query]';
+                }
             }
+        });
+        // JavaScript & TYPESCRIPT HANDLER
+        this.webpackConfig.module.rules.push({
+            test: /\.(js)x?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        ['@babel/preset-env', {
+                            "corejs": {"version": 3},
+                            "useBuiltIns": "usage",
+                            "targets": {
+                                "edge": "90",
+                                "firefox": "90",
+                                "chrome": "91",
+                                "safari": "14.1",
+                                // "ie": "11"
+                            }
+                        }],
+                        ['@babel/typescript']
+                    ],
+                }
+            }
+        });
+        // html loader
+        this.webpackConfig.module.rules.push({
+            test: /\.(html)$/,
+            use: [
+                {
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
+                    },
+                },
+            ],
         });
         // sass / scss loader for webpack
         this.webpackConfig.module.rules.push({
             test: /\.(sa|sc|c)ss$/,
             use: [
                 {
-                    loader: MiniCssExtractPlugin.loader
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: "../../",
+                    },
                 },
-                'css-loader',
-                'sass-loader',
+                {loader: 'css-loader'},
+                {loader: 'sass-loader'},
             ],
         });
-
-        // Template
-        this.webpackConfig.module.rules.push({
-            test: /\.(html)$/,
-            use: {
-                loader: 'html-loader',
-                options: {
-                    minimize: true
-                }
-            }
-        });
-
-        // json loader for webpack
-        this.webpackConfig.module.rules.push({
-            test: /\.(json)$/,
-            type: 'javascript/auto',
-            use: {
-                loader: 'json-loader',
-            }
-        });
-
         return this;
     }
+
     /**
      * Build the plugins array.
      */
     buildPlugins() {
-        // Add Frindly Errors
-        this.webpackConfig.plugins.push(
-            new FriendlyErrorsWebpackPlugin({
-                clearConsole: true
-            })
-        );
-        // say MiniCssExtractPlugin to export his results to style.css
+        // say ExtractTextPlugin to export his results to style.css
         this.webpackConfig.plugins.push(
             new MiniCssExtractPlugin({ // define where to save the file
-                filename: '../css/dp_cookieconsent.css',
+                filename: '../css/' + this.getName() + '.css',
             })
         );
         // copy files
@@ -172,19 +176,19 @@ class dpWebpack {
             new CopyPlugin({
                 patterns: [
                     {
-                        from: './src/js/l10n',
-                        to: './l10n',
+                        from: './src/js/l10n/',
+                        to: 'l10n/',
                         globOptions: {
                             ignore: ['**/en.js']
-                        }
+                        },
+                        noErrorOnMissing: true,
+                        force: true
                     }
                 ],
             }),
         );
-
         return this;
     }
 }
 
-
-module.exports = new dpWebpack().build();
+module.exports = new WebpackConfig().build();
