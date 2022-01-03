@@ -68,11 +68,11 @@ Now your customer can choose what types of scripts/cookies he want to allow.
 
 This 3 types are possible and handled by the consent:
 
-| Type       | Description                                          | example | 
-| ---------- | ---------------------------------------------------- | --------- |
-| required   | all normal script, will always called                | `<script type="text/javascript" ...`
-| statistics | scripts that will only run after consent handling    | `<script data-cookieconsent="statistics" type="text/plain"...`
-| marketing  | scripts that will only run after consent handling    | `<script data-cookieconsent="marketing" type="text/plain"...`
+| Type       | Description                                          | example                                                        | 
+| ---------- | ---------------------------------------------------- |----------------------------------------------------------------|
+| required   | all normal script, will always called                | `<script type="text/javascript" ...`                           |
+| statistics | scripts that will only run after consent handling    | `<script data-cookieconsent="statistics" type="text/plain"...` |
+| marketing  | scripts that will only run after consent handling    | `<script data-cookieconsent="marketing" type="text/plain"...`  |
 
 ### load iframe after accepting
 If you want to load iFrame's (YouTube, GMap, ..) after the Cookie is accepted you can use this snipped
