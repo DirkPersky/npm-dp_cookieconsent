@@ -28,6 +28,23 @@ import defaultL10n from './l10n/en';
      */
     var util = {
         /**
+         * reformat checkbox entries
+         * @param options
+         * @returns {{name: string, checked: boolean}[]}
+         */
+        reformatCheckboxOptions: function (options){
+            var reformated = Object.entries(options).map( item => {
+                var status = String(item[1]).toLowerCase() == 'true' ? true : false;
+                return {
+                    name: item[0],
+                    checked: status
+                }
+            });
+
+            return reformated;
+
+        },
+        /**
          * load Cookie
          * @param name
          * @returns {undefined|any}
@@ -341,6 +358,8 @@ import defaultL10n from './l10n/en';
         CookiePopup.prototype.initialise = function (options) {
             // set options back to default options
             util.deepExtend((this.options = {}), defaultOptions);
+            // reformat checkboxes
+            if(typeof options.checkboxes === 'object') options.checkboxes = util.reformatCheckboxOptions(options.checkboxes);
             // merge in user options
             if (typeof options === 'object') util.deepExtend(this.options, options);
             // bind callback function
