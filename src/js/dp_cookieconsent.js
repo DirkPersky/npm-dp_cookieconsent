@@ -27,6 +27,25 @@ import defaultL10n from './l10n/en';
      * define helper functions
      */
     var util = {
+
+        detectRobot : function(userAgent) {
+            const robots = new RegExp([
+                /Chrome-Lighthouse/,
+                /bot/,/spider/,/crawl/,                            // GENERAL TERMS
+                /APIs-Google/,/AdsBot/,/Googlebot/,                // GOOGLE ROBOTS
+                /mediapartners/,/Google Favicon/,
+                /FeedFetcher/,/Google-Read-Aloud/,
+                /DuplexWeb-Google/,/googleweblight/,
+                /bing/,/yandex/,/baidu/,/duckduck/,/yahoo/,        // OTHER ENGINES
+                /ecosia/,/ia_archiver/,
+                /facebook/,/instagram/,/pinterest/,/reddit/,       // SOCIAL MEDIA
+                /slack/,/twitter/,/whatsapp/,/youtube/,
+                /semrush/,                                         // OTHER
+            ].map((r) => r.source).join("|"),"i");               // BUILD REGEXP + "i" FLAG
+
+            return robots.test(userAgent);
+        },
+
         /**
          * reformat checkbox entries
          * @param options
@@ -960,7 +979,7 @@ import defaultL10n from './l10n/en';
         // run event
         cc.utils.fireEvent('dp--cookie-init');
         // no cookie is set, open popup
-        if (cc.popup.hasConsent()) {
+        if (cc.popup.hasConsent() || util.detectRobot(navigator.userAgent)) {
             cc.popup.close();
             // run init event
             cc.utils.fireEvent('dp--cookie-accept-init');
