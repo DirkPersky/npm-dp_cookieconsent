@@ -117,14 +117,20 @@ class WebpackConfig {
                 options: {
                     presets: [
                         ['@babel/preset-env', {
-                            "corejs": {"version": 3},
-                            "useBuiltIns": "usage",
-                            "targets": {
-                                "edge": "90",
-                                "firefox": "90",
-                                "chrome": "91",
-                                "safari": "14.1",
-                                // "ie": "11"
+                            corejs: {
+                                version: 3,
+                                proposals : true
+                            },
+                            useBuiltIns: "usage",
+                            targets: {
+                                browsers: [
+                                    "edge >= 90",
+                                    "safari >= 9",
+                                    "firefox >= 90",
+                                    "ie >= 11",
+                                    "ios >= 9",
+                                    "chrome >= 91"
+                                ]
                             }
                         }],
                         ['@babel/typescript']

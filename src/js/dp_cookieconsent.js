@@ -24,6 +24,37 @@ import defaultL10n from './l10n/en';
     // stop from running again, if accidently included more than once.
     if (cc.hasInitialised) return;
     /**
+     * IE 11 POLYFILLS
+     */
+    // source: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+    (function() {
+        if (typeof window.CustomEvent === "function") return false
+
+        function CustomEvent(event, params) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined }
+            var evt = document.createEvent("CustomEvent")
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail)
+            return evt
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+        window.CustomEvent = CustomEvent;
+    })();
+    // EVENT POLY
+    (function() {
+        if (typeof window.Event === "function") return false
+
+        function Event(event, params) {
+            params = params || { bubbles: true, cancelable: true, detail: undefined }
+            var evt = document.createEvent('Event');
+            evt.initEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt
+        }
+
+        Event.prototype = window.Event.prototype;
+        window.Event = Event;
+    })();
+    /**
      * define helper functions
      */
     var util = {
