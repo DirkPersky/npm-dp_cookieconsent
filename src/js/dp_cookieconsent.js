@@ -842,12 +842,12 @@ import defaultL10n from './l10n/en';
                     if (src && src.length > 0) {
                         this.ajax('GET', src, function (response) {
                             element.innerHTML = response.response;
-                            cc.utils.fireEvent('dp--cookie-conent', element);
+                            cc.utils.fireEvent('dp--cookie-content', element);
                         }, function (error) {
                         });
                     } else {
                         /** call Inline Event **/
-                        cc.utils.fireEvent('dp--cookie-conent', element);
+                        cc.utils.fireEvent('dp--cookie-content', element);
                     }
                 })
             }
