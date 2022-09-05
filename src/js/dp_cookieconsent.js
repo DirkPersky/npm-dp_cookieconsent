@@ -1037,6 +1037,8 @@ import defaultL10n from './l10n/en';
                 // set checkbox status
                 if(id == type) e.checked = true;
             });
+            // fire accept event
+            cc.utils.fireEvent('dp--cookie-accept');
         }
         // run save method
         cc.popup.save();
