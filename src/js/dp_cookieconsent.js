@@ -158,7 +158,10 @@ import defaultL10n from './l10n/en';
             }
             this.deepExtend(merged, obj);
             // merge with given values
-            return merged;
+            return {
+                exists: (typeof cookie != 'undefined') ? true: false,
+                config: merged
+            };
         },
 
         getElementsByTag: function (tag, selector) {
@@ -638,10 +641,14 @@ import defaultL10n from './l10n/en';
          * @param obj
          */
         CookiePopup.prototype.saveCookie = function (obj) {
+            // prepare Cookie Options
+            var cookieOptions = cc.utils.prepareCookie(obj, this.options.cookie.name);
+            // check status for first init
+            if(!cookieOptions.exists && cookieOptions.config.status == 'open') return;
             // save cookie
             cc.utils.setCookie(
                 this.options.cookie.name,
-                cc.utils.prepareCookie(obj, this.options.cookie.name),
+                cookieOptions.config,
                 this.options.cookie.expiryDays,
                 this.options.cookie.domain,
                 this.options.cookie.path,
