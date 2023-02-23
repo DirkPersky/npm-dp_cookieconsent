@@ -128,5 +128,10 @@
 >
     YOUR CONTENT
 </dp-content>
+<script>
+    document.addEventListener('dp--cookie-fire', function (e) {
+        console.log('dp--cookie-fire', e.detail.$el);
+    });
+</script>
 </body>
 </html>

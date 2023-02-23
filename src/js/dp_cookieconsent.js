@@ -234,7 +234,7 @@ import defaultL10n from './l10n/en';
         fireEvent: function (name, element) {
             var event;
             if (element) {
-                event = new CustomEvent(name, {$el: element});
+                event = new CustomEvent(name, {detail: {$el: element}});
             } else {
                 event = new Event(name);
             }
