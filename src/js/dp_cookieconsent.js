@@ -585,10 +585,6 @@ import defaultL10n from './l10n/en';
                     // save key to preset
                     this.saveCheckboxes(id, e.checked);
                 });
-                // save config to cookie
-                this.saveCookie({
-                    checkboxes: this.options.checkboxes,
-                });
             }
             // close modal
             this.close();
@@ -703,6 +699,7 @@ import defaultL10n from './l10n/en';
             // set status to closed
             this.saveCookie({
                 status: 'approved',
+                checkboxes: this.options.checkboxes,
             });
             // remove body class
             document.querySelector('body').classList.remove('dp--cookie-consent');
